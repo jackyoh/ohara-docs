@@ -24,7 +24,7 @@
 #  weight = 40
 
 [[main]]
-  name = "Docs"
+  name = "文件"
   url = "/docs"
   weight = 50
 
@@ -40,7 +40,7 @@
 
 [[docs]]
   identifier = "docs"
-  name = "Versions"
+  name = "版本"
   weight = 10
 
 [[docs]]
