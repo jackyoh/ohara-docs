@@ -41,6 +41,7 @@
 [[docs]]
   identifier = "docs"
   name = "Versions"
+  url = "/docs"
   weight = 10
 
 [[docs]]
@@ -49,8 +50,11 @@
   url = "master"
   weight = 10
 
-#[[docs]]
-#  parent = "docs"
-#  name = "0.10.x"
-#  url = "010x"
-#  weight = 20
+[[master]]
+  name = "Quickstart"
+  url = "quickstart"
+  weight = 20
+
+[[master]]
+  name = "How to build"
+  weight = 30

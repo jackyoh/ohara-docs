@@ -20,5 +20,12 @@ type: docs  # Do not modify.
 #    parent: Index
 #    name: Overview
 #    weight: 1
+
+menu:
+  master:
+    name: Quickstart
+    url: "quickstart/"
+
 ---
 
+Ohara is open to users, developers and man living in earth. Hence, we prepare a bunch of docs to help you to understand ohara comprehensively but quickly.

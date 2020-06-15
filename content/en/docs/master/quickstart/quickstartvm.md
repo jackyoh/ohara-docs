@@ -3,7 +3,7 @@ title: Using Quickstart VM
 linktitle: Using Quickstart VM
 toc: true
 type: docs
-date: "2020-06-12T00:00:00+01:00"
+date: "2020-06-15T00:00:00+01:00"
 draft: false
 menu:
   master:

@@ -1,5 +1,5 @@
 ---
-title: Documentation
+title: Document versions
 layout: docs  # Do not modify.
 
 # Note: Docs sidebar menu 在 menus.toml 
@@ -10,4 +10,4 @@ header:
   image: ""
 ---
 
-Ohara is open to users, developers and man living in earth. Hence, we prepare a bunch of docs to help you to understand ohara comprehensively but quickly.
+Document versions
