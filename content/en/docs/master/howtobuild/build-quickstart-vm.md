@@ -7,9 +7,8 @@ date: "2020-06-15T00:00:00+01:00"
 draft: false
 menu:
   master:
-    parent: How to build
-    weight: 100
-    
+    parent: Contents
+    weight: 100    
 
 # Prev/next pager order (if `docs_section_pager` enabled in `params.toml`)
 weight: 1
@@ -25,7 +24,7 @@ weight: 1
 -   [Packer](https://www.packer.io/) 1.4+: Packer is an open source tool
     for creating identical machine images for multiple platforms from a
     single source configuration.
--   [VirtualBox](https://www.virtualbox.org/) 5.2+
+-   [VirtualBox](https://www.virtualbox.org/) 6.0+
 
 ## Build OVA file
 

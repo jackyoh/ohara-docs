@@ -2,7 +2,11 @@
 
 * Building development environment
   * Install Hugo - https://gohugo.io/getting-started/installing/
-  * Preview ohara-docs in localhost:
+  * For the preview and development, just type:
+    ```
+    [ohara-docs]$ ./view.sh
+    ```
+  * You alse can use Hugo command directly, for example:
     ```
     [ohara-docs]$ hugo server [-D] [--disableFastRender] [--bind=0.0.0.0]
     ```

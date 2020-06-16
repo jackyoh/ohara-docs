@@ -21,10 +21,10 @@ type: docs  # Do not modify.
 #    name: Overview
 #    weight: 1
 
-menu:
-  master:
-    name: Quickstart
-    url: "quickstart/"
+#menu:
+#  master:
+#    name: Quickstart
+#    url: "quickstart/"
 
 ---
 
