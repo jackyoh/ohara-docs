@@ -27,7 +27,7 @@ menu:
 
 Ohara build is based on [gradle](https://gradle.org/). Ohara has defined many gradle tasks to simplify the development of Ohara.
 
-**Build Binary**
+### Build Binary {#build-binary}
 
 ```console
 $ ./gradlew clean build -x test
@@ -38,7 +38,7 @@ $ ./gradlew clean build -x test
 {{% /alert %}}
 
 
-**Run All UTs**
+### Run All UTs
 
 ```console
 $ ./gradlew clean test
@@ -61,7 +61,7 @@ produce tests timeout.
 {{% /alert %}}
 
 
-**Code Style Auto-Apply**
+### Code Style Auto-Apply
 
 Use this task to make sure your added code will have the same format and conventions with the rest of codebase.
 
@@ -74,7 +74,7 @@ we have this style check in early QA build.
 {{% /alert %}}
 
 
-**License Auto-Apply**
+### License Auto-Apply
 
 If you have added any new files in a PR. This task will automatically insert an Apache 2.0 license header in each one of these newly created files
 
@@ -87,7 +87,7 @@ Note that a file without the license header will fail at early QA build
 {{% /alert %}}
 
 
-**Publish Artifacts to JFrog Bintray**
+### Publish Artifacts
 
 ```console
 $ ./gradlew clean bintrayUpload -PskipManager -PbintrayUser=$user -PbintrayKey=$key
@@ -106,7 +106,7 @@ $ ./gradlew clean bintrayUpload -PskipManager -PbintrayUser=$user -PbintrayKey=$
 > Note: Only release manager has permission to upload artifacts
 
 
-**Publish Artifacts to local maven repository**
+### Publish Artifacts
 
 
 ```console
@@ -116,6 +116,4 @@ $ ./gradlew clean build publishToMavenLocal -PskipManager -x test
 
 ## Installation
 
-[//]: <> (TODO: fix the broken link)
-
-see `User Guide <userguide>`
+see [User Guide]({{< relref "../user_guide.md" >}})

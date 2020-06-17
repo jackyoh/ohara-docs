@@ -3,7 +3,7 @@ title: Setting Definition Guide
 linktitle: Setting Definition Guide
 toc: true
 type: docs
-date: "2020-06-16T00:00:00+01:00"
+date: "2020-06-17T00:00:00+01:00"
 draft: false
 diagram: true
 menu:
@@ -28,7 +28,7 @@ consists of following arguments.
 
 [//]: <> (TODO: fix the broken link)
 
-1. [reference]({{< ref "#setting-reference" >}})(**string**) --- works for ohara manager. It represents the reference of value.
+1. [reference]({{< relref "#setting-reference" >}})(**string**) --- works for ohara manager. It represents the reference of value.
 1. group (**string**) --- the group of this setting (all core setting are in core group)
 1. orderInGroup (**int**) --- the order in group
 1. displayName (**string**) --- the readable name of this setting
@@ -37,7 +37,7 @@ consists of following arguments.
     - CREATE_ONLY --- you can't update the value to an new one
     - EDITABLE --- feel free to modify the value as you wish :)
 1. key (**string**) --- the key of configuration
-1. [valueType]({{< ref "#value-type" >}})(**string**) --- the type of value
+1. [valueType]({{< relref "#value-type" >}})(**string**) --- the type of value
 1. necessary (**string**)
     - REQUIRED --- this field has no default and user MUST define something for it.
     - OPTIONAL --- this field has no default and user does NOT need to define something for it.
@@ -152,11 +152,11 @@ This element is a specific purpose. It is used by Ohara manager (UI) only. If yo
 * ZOOKEEPER_CLUSTER
 * BROKER_CLUSTER
 * WORKER_CLUSTER
-* FILE,
+* FILE
 * VOLUME
 
 {{% alert hint %}}
-For each reference value, it may has different type and will produce
+For each reference value, it may have different type and will produce
 different behavior.
 {{% /alert %}}
 
@@ -337,7 +337,7 @@ SettingDef.builder().key(key).required(Type.ARRAY).build();
 {{% alert hint %}}
 An empty array is ok and will pass the checker:
 
-``` {.json}
+```json
 {
   "key": []
 }
@@ -373,7 +373,7 @@ SettingDef.builder().key(key).required(Type.PASSWORD).build();
 JDBC_TABLE is a specific string type used to reminder Ohara Manager
 that this field requires a **magic** button to show available tables of
 remote database via Query APIs. Except for the **magic** in UI, there is
-no other stuff for this JDBC\_TYPE since kafka can't verify the input
+no other stuff for this JDBC_TYPE since kafka can't verify the input
 arguments according to other arguments. It means we can't connect to
 remote database to check the existence of input table.
 
@@ -486,14 +486,13 @@ This type is similar to Type.PORT except that the value mapped to
 BINDING_PORT has a extra check to the availability on the target nodes.
 For example, you define value 5555 as a BINDING_PORT, and you will get
 a exception when you try to deploy your code on the node which is using
-port 5555 as well. The legal value of binding port is between [0,
-65535].
+port 5555 as well. The legal value of binding port is between [0, 65535].
 
 #### Type.OBJECT_KEY
 
 object key represents a format of
 **oharastream.ohara.common.setting.ObjectKey** for specific object. It
-consists \"group\" and \"name\" fields. In a custom application, you
+consists "group" and "name" fields. In a custom application, you
 should check the request contains both fields.
 
 ```json
@@ -555,7 +554,7 @@ have default value and you can trace Necessary field to know that.
 
 Necessary field has four values.
 
-1. **REQUIRED** - this value has no default value, and it must be defined. You may get error if you don\'t give any value to it.
+1. **REQUIRED** - this value has no default value, and it must be defined. You may get error if you don't give any value to it.
 1. **OPTIONAL** - this value has no default value, but it is ok to leave nothing.
 1. **RANDOM_DEFAULT** - the default value assigned to this value is random. For example, all objects' name has a random string by default; The binding port field has a random free port by default.
 
