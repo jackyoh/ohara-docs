@@ -11,6 +11,7 @@ menu:
     weight: 900
 ---
 
+:construction: Under construction :construction:
 
 All we love is only pull request so we have some rules used to make your
 PR looks good for reviewers.

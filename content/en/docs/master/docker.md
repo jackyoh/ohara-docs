@@ -11,6 +11,8 @@ menu:
     weight: 200
 ---
 
+:construction: Under construction :construction:
+
 ## Why we need docker-compose
 
 Ohara is good at connecting to various systems to collect, transform, aggregate (and other operations you can imagine) data. In order to test Ohara, we need a way to run a bunch of systems simultaneously. We can build a heavy infra to iron out this problem. Or we can leverage docker-compose to host various systems "locally" (yes, you need a powerful machine to use Ohara's docker-compose file).

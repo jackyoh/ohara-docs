@@ -12,6 +12,8 @@ menu:
     weight: 60
 ---
 
+:construction: Under construction :construction:
+
 A powerful application always has a complicated configuration. In order
 to be a best friend of Ohara users, Ohara provides a method which can
 return the details of setting definitions, and ohara suggests that all

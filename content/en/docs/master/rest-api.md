@@ -12,4 +12,4 @@ menu:
     weight: 20
 ---
 
-:construction: Under construction
+:construction: Under construction :construction:
