@@ -9,7 +9,6 @@ menu:
   master:
     parent: Contents
     weight: 10
-oharaVersion: 0.10.0
 ---
 
 This documentation is for Ohara users who try to exercise or test Ohara
@@ -56,7 +55,7 @@ The core component of Ohara is [Configurator]({{< relref "#configurator" >}}). A
 [related tools]({{< relref "#installation" >}}), you can set up a Configurator via following docker command.
 
 ```console
-$ docker run --rm -p 12345:12345 oharastream/configurator:{{< param oharaVersion >}} --port 12345
+$ docker run --rm -p 12345:12345 oharastream/configurator:{{< ohara-version >}} --port 12345
 ```
 
 {{% alert hint %}}
@@ -66,7 +65,7 @@ click [here]({{< relref "#execute-configurator" >}}) to see more options for con
 And then you can also create a manager to provide a beautiful UI based on above Ohara Configurator.
 
 ```console
-$ docker run --rm -p 5050:5050 oharastream/manager:{{< param oharaVersion >}} --port 5050 --configurator http://$ip:12345/v0
+$ docker run --rm -p 5050:5050 oharastream/manager:{{< ohara-version >}} --port 5050 --configurator http://$ip:12345/v0
 ```
 
 {{% alert hint %}}
@@ -130,18 +129,18 @@ click this [link](https://docs.docker.com/install/linux/docker-ce/centos/).
 Ohara deploys docker images on [docker hub](https://hub.docker.com/u/oharastream). 
 You can download images via `docker pull` command. All images are list below.
 
-1. oharastream/broker:{{< param oharaVersion >}}
-1. oharastream/zookeeper:{{< param oharaVersion >}}
-1. oharastream/connect-worker:{{< param oharaVersion >}}
-1. oharastream/configurator:{{< param oharaVersion >}}
-1. oharastream/manager:{{< param oharaVersion >}}
-1. oharastream/stream:{{< param oharaVersion >}}
-1. oharastream/shabondi:{{< param oharaVersion >}}
+1. oharastream/broker:{{< ohara-version >}}
+1. oharastream/zookeeper:{{< ohara-version >}}
+1. oharastream/connect-worker:{{< ohara-version >}}
+1. oharastream/configurator:{{< ohara-version >}}
+1. oharastream/manager:{{< ohara-version >}}
+1. oharastream/stream:{{< ohara-version >}}
+1. oharastream/shabondi:{{< ohara-version >}}
 
 ### Execute Configurator {#execute-configurator}
 
 ```console
-$ docker run --rm -p ${port}:${port} --add-host ${nodeHostName}:${nodeHostIP} oharastream/configurator:{{< param oharaVersion >}} --port ${port} --hostname ${host}
+$ docker run --rm -p ${port}:${port} --add-host ${nodeHostName}:${nodeHostIP} oharastream/configurator:{{< ohara-version >}} --port ${port} --hostname ${host}
 ```
 
 - `--folder`: the folder used to store data (default is random). Mount
@@ -185,7 +184,7 @@ is to mount a local folder (/tmp/configurator) on
 $ mkdir /tmp/configurator
 $ docker run -v /tmp/configurator:/home/ohara/configurator \
          -p 12345:12345 \
-         oharastream/configurator:{{< param oharaVersion >}} \
+         oharastream/configurator:{{< ohara-version >}} \
          --port 12345 \
          --folder /home/ohara/configurator
 ```
@@ -199,14 +198,14 @@ folder. Otherwise, Ohara Configurator flush all data to a random folder.
 **How to solve the start configurator container permission denied issue?**
 
 1. You must confirm your host username is the ohara and UID is 1000.
-   Please refer to issue [#2573](https://github.com/oharastream/ohara/issues/2573)
+   Please refer to issue [#2573]({{< url-ohara-issue 2573 >}})
 2. Please confirm the **/tmp/configurator** host path owner is ohara user
    and have to write permission.
 
 ### Execute Manager
 
 ```console
-$ docker run --rm -p 5050:5050 oharastream/manager:{{< param oharaVersion >}} --port 5050 --configurator http://localhost:12345/v0
+$ docker run --rm -p 5050:5050 oharastream/manager:{{< ohara-version >}} --port 5050 --configurator http://localhost:12345/v0
 ```
 
 - `--port`: bound by manager (default is 5050)
@@ -229,7 +228,7 @@ POSTGRES_USER="user" is illegal to postgresql
 ### Execute FTP Instance
 
 ```console
-$ docker run --rm -p 10000-10011:10000-10011 oharastream/backend:{{< param oharaVersion >}} oharastream.ohara.testing.service.FtpServer --controlPort 10000 --dataPorts 10001-10011 --user ${UserName} --password ${Password} --hostname ${hostIP or hostName}
+$ docker run --rm -p 10000-10011:10000-10011 oharastream/backend:{{< ohara-version >}} oharastream.ohara.testing.service.FtpServer --controlPort 10000 --dataPorts 10001-10011 --user ${UserName} --password ${Password} --hostname ${hostIP or hostName}
 ```
 
 - controlPort: bound by FTP Server
@@ -804,8 +803,8 @@ For example:
            http://${CONFIGURATOR_HOSTNAME_OR_IP}:5000/v0/nodes
     
     # You must pre pull docker image in the ${K8S_WORKER01_HOSTNAME} and ${K8S_WORKER02_HOSTNAME} host, Below is command:
-    docker pull oharastream/zookeeper:{{< param oharaVersion >}}
-    docker pull oharastream/broker:{{< param oharaVersion >}}
+    docker pull oharastream/zookeeper:{{< ohara-version >}}
+    docker pull oharastream/broker:{{< ohara-version >}}
     
     # Create Zookeeper cluster service
     $ curl -H "Content-Type: application/json" \
@@ -911,7 +910,7 @@ For example:
     ```
     
 {{% alert hint %}}
-For more details please refer to [here]( https://github.com/kubernetes-sigs/metrics-server/issues/131).
+For more details please refer to [here](https://github.com/kubernetes-sigs/metrics-server/issues/131).
 {{% /alert %}}
 
 - Deploy the Kubernetes metrics server, below is the command:

@@ -9,7 +9,6 @@ menu:
   rest-api:
     parent: REST APIs
     weight: 120
-oharaVersion: 0.10.0
 ---
 
 Node is the basic unit of running service. It can be either physical
@@ -32,8 +31,8 @@ following services.
 
 The version (tag) depends on which Ohara you used. It would be better to
 use the same version to Ohara. For example, the version of Ohara
-configurator you are running is {{< param oharaVersion >}}, then the official images you should
-download is `oharastream/xxxx:{{< param oharaVersion >}}`.
+configurator you are running is {{< ohara-version >}}, then the official images you should
+download is `oharastream/xxxx:{{< ohara-version >}}`.
 
 The properties used by describing a node are shown below.
 

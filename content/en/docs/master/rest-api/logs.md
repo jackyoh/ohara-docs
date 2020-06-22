@@ -9,7 +9,6 @@ menu:
   rest-api:
     parent: REST APIs
     weight: 110
-oharaVersion: 0.10.0
 ---
 
 This world is beautiful but not safe. Even though Ohara shoulders the

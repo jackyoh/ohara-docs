@@ -9,7 +9,6 @@ menu:
   rest-api:
     parent: REST APIs
     weight: 80
-oharaVersion: 0.10.0
 ---
 
 Each processes managed by Ohara is based on docker container. In most
@@ -87,7 +86,7 @@ are shown below.
               }
             ],
             "nodeName": "ohara-release-test-00",
-            "imageName": "oharastream/connect-worker:{{< param oharaVersion >}}",
+            "imageName": "oharastream/connect-worker:{{< ohara-version >}}",
             "id": "2a3b3872-35ab-11ea-8a18-a29736512df3",
             "kind": "K8S"
           }

@@ -9,7 +9,6 @@ menu:
   rest-api:
     parent: REST APIs
     weight: 90
-oharaVersion: 0.10.0
 ---
 
 Ohara encourages user to write custom application if the official

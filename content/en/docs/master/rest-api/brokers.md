@@ -9,7 +9,6 @@ menu:
   rest-api:
     parent: REST APIs
     weight: 60
-oharaVersion: 0.10.0
 ---
 
 [Broker](https://kafka.apache.org/intro) is core of data transmission in
@@ -83,7 +82,7 @@ The following information are updated by Ohara.
       "num.network.threads": 1,
       "tags": {},
       "xmx": 1024,
-      "imageName": "oharastream/broker:{{< param oharaVersion >}}",
+      "imageName": "oharastream/broker:{{< ohara-version >}}",
       "log.dirs": "/home/ohara/default/data",
       "aliveNodes": [],
       "jmxPort": 42020,
@@ -117,7 +116,7 @@ The following information are updated by Ohara.
         "num.network.threads": 1,
         "tags": {},
         "xmx": 1024,
-        "imageName": "oharastream/broker:{{< param oharaVersion >}}",
+        "imageName": "oharastream/broker:{{< ohara-version >}}",
         "log.dirs": "/home/ohara/default/data",
         "aliveNodes": [],
         "jmxPort": 42020,
@@ -161,7 +160,7 @@ this request as POST
       "num.network.threads": 1,
       "tags": {},
       "xmx": 2048,
-      "imageName": "oharastream/broker:{{< param oharaVersion >}}",
+      "imageName": "oharastream/broker:{{< ohara-version >}}",
       "log.dirs": "/home/ohara/default/data",
       "aliveNodes": [],
       "jmxPort": 42020,
@@ -216,7 +215,7 @@ don't specify it.
       "num.network.threads": 1,
       "tags": {},
       "xmx": 2048,
-      "imageName": "oharastream/broker:{{< param oharaVersion >}}",
+      "imageName": "oharastream/broker:{{< ohara-version >}}",
       "log.dirs": "/home/ohara/default/data",
       "aliveNodes": [],
       "jmxPort": 42020,

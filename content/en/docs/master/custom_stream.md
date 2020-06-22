@@ -9,9 +9,6 @@ menu:
   master:
     parent: Contents
     weight: 30
-
-oharaVersion: 0.10.0
-oharaCode: https://github.com/oharastream/ohara/tree/master
 ---
 
 Ohara stream is an unparalleled wrap of [kafka streams](https://kafka.apache.org/documentation/streams) which gives you
@@ -47,9 +44,9 @@ repositories {
          url "https://dl.bintray.com/oharastream/ohara"
      }
  }
-implementation "oharastream.ohara:ohara-stream:{{< param oharaVersion >}}"
-implementation "oharastream.ohara:ohara-common:{{< param oharaVersion >}}"
-implementation "oharastream.ohara:ohara-kafka:{{< param oharaVersion >}}"
+implementation "oharastream.ohara:ohara-stream:{{< ohara-version >}}"
+implementation "oharastream.ohara:ohara-common:{{< ohara-version >}}"
+implementation "oharastream.ohara:ohara-kafka:{{< ohara-version >}}"
 ```
 
 {{% alert hint %}}
@@ -141,13 +138,13 @@ stream data source in start() method.
 
 We provide two arguments in this method:
 
-1. OStream - the entry class of ohara stream  
+1. OStream --- the entry class of ohara stream  
    OStream (a.k.a. ohara stream) helps you to construct your
    application and use all the powerful APIs in Stream.
 
-2. StreamDefinitions - the definitions of ohara stream  
-    from the definition you can use _StreamDefinitions.string()_ to get the value from the
-    [config method]({{< relref "#config-method" >}}).
+2. StreamDefinitions --- the definitions of ohara stream  
+   from the definition you can use _StreamDefinitions.string()_ to get the value from the
+   [config method]({{< relref "#config-method" >}}).
 
 {{% alert hint %}}
 The return value is wrap in a Java object **Optional**, you need to
@@ -170,20 +167,20 @@ public void start(OStream<Row> ostream, StreamDefinitions streamSetting) {
 
 The above code does the following transformations:
 
-1.  pick cell of the header: `name`, `age` from each row
-2.  filter out that if `filterName` is null --- 
-    here we get the value from **filterName** of definitions. the value you should update by
-    [Stream update api]({{< relref "streams.md#update" >}})
-      
-    PUT /v0/streams/XXX
+1. pick cell of the header: `name`, `age` from each row
+2. filter out that if `filterName` is null --- 
+   here we get the value from **filterName** of definitions. the value you should update by
+   [Stream update api]({{< relref "streams.md#update" >}})
+     
+   PUT /v0/streams/XXX
 
-    ```json
-    {
-     "filterName": "name"
-    }
-    ```
+   ```json
+   {
+    "filterName": "name"
+   }
+   ```
 
-3.  convert the cell of `name` to upperCase
+3. convert the cell of `name` to upperCase
 
 From now on, you can use the [Stream Java API]({{< relref "#java-api" >}}) to
 design your own application, happy coding!
@@ -275,9 +272,12 @@ Below we provide some examples that demonstrate how to develop your own
 stream applications. More description of each example could be found in
 javadoc.
 
-- [WordCount]({{< param oharaCode >}}/ohara-stream/src/test/java/oharastream/ohara/stream/examples/WordCountExample.java): count the words in "word" column
-- [PageViewRegion]({{< param oharaCode >}}/ohara-stream/src/test/java/oharastream/ohara/stream/examples/PageViewRegionExample.java): count the views by each region
-- [Sum]({{< param oharaCode >}}/ohara-stream/src/test/java/oharastream/ohara/stream/examples/SumExample.java): sum odd numbers in “number” column
+- [WordCount]({{< url-ohara-code >}}/ohara-stream/src/test/java/oharastream/ohara/stream/examples/WordCountExample.java): 
+  count the words in "word" column
+- [PageViewRegion]({{< url-ohara-code >}}/ohara-stream/src/test/java/oharastream/ohara/stream/examples/PageViewRegionExample.java): 
+  count the views by each region
+- [Sum]({{< url-ohara-code >}}/ohara-stream/src/test/java/oharastream/ohara/stream/examples/SumExample.java): 
+  sum odd numbers in “number” column
 
 ------------------------------------------------------------------------
 
@@ -322,6 +322,7 @@ as a definition that is listed in the "common" group.
 Any group category will generate a new "tab" in Ohara-Manager.
 {{% /alert %}}
 
+
 The value of each definition will be kept in environment of stream
 running container, and you should set the value by
 [stream api]({{< relref "rest-api/streams.md#update" >}}).
@@ -349,22 +350,23 @@ more readable format of metrics.
 
 ### Official Metrics {#official-metrics}
 
-There are two type of official metrics for stream: - consumed topic
-records (counter) - produced topic records (counter)
+There are two type of official metrics for stream: 
+- consumed topic records (counter) 
+- produced topic records (counter)
 
 A normal stream will connect to two topics, one is the source topic that
 stream will consume from, and the other is the target topic that stream
 will produce to. We use prefix words (**TOPIC_IN**, **TOPIC_OUT**) in
-the response data ([Stream APIs][Stream APIs]({{< relref "streams.md" >}})) 
+the response data ([Stream APIs]({{< relref "streams.md" >}})) 
 in order to improve readabilities of those types. You don't
 need to worry about the implementation of these official metrics, but
 you can still read the
-[source code]({{< param oharaCode >}}/ohara-stream/src/main/java/oharastream/ohara/stream/metric/MetricFactory.java)
+[source code]({{< url-ohara-code >}}/ohara-stream/src/main/java/oharastream/ohara/stream/metric/MetricFactory.java)
 to see how Ohara creates official metrics.
 
 ------------------------------------------------------------------------
 
 ## Logs {#logs}
 
-Will be implemented in the near future. Also see issue: 
-[#962](https://github.com/oharastream/ohara/issues/962)
+Will be implemented in the near future. Also see issue: [#962]({{< url-ohara-issue 962 >}})
+

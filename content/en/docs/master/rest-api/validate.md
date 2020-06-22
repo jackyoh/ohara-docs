@@ -9,7 +9,6 @@ menu:
   rest-api:
     parent: REST APIs
     weight: 180
-oharaVersion: 0.10.0
 ---
 
 Notwithstanding we have read a lot of document and guideline, there is a

@@ -9,7 +9,6 @@ menu:
   rest-api:
     parent: REST APIs
     weight: 140
-oharaVersion: 0.10.0
 ---
 
 Pipeline APIs are born of Ohara manager which needs a way to store the

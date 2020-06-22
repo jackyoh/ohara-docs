@@ -9,7 +9,6 @@ menu:
   rest-api:
     parent: REST APIs
     weight: 150
-oharaVersion: 0.10.0
 ---
 
 Shabondi service play the role of a http proxy service in the Pipeline.
@@ -143,9 +142,9 @@ The following information are updated by Ohara
             ]
           }
         },
-        "imageName": "oharastream/shabondi:{{< param oharaVersion >}}",
+        "imageName": "oharastream/shabondi:{{< ohara-version >}}",
         "revision": "7cb25202c5308095546e5a6a2b96480d9d3104e1",
-        "version": "{{< param oharaVersion >}}",
+        "version": "{{< ohara-version >}}",
         "aliveNodes": [
           "node00"
         ],
@@ -206,9 +205,9 @@ The following information are updated by Ohara
       "xmx": 1024,
       "shabondi.class": "oharastream.ohara.shabondi.ShabondiSource",
       "nodeMetrics": {},
-      "imageName": "oharastream/shabondi:{{< param oharaVersion >}}",
+      "imageName": "oharastream/shabondi:{{< ohara-version >}}",
       "revision": "7cb25202c5308095546e5a6a2b96480d9d3104e1",
-      "version": "{{< param oharaVersion >}}",
+      "version": "{{< ohara-version >}}",
       "aliveNodes": [],
       "jmxPort": 56726,
       "kind": "source",
@@ -246,9 +245,9 @@ The following information are updated by Ohara
       "xmx": 1024,
       "shabondi.class": "oharastream.ohara.shabondi.ShabondiSource",
       "nodeMetrics": {},
-      "imageName": "oharastream/shabondi:{{< param oharaVersion >}}",
+      "imageName": "oharastream/shabondi:{{< ohara-version >}}",
       "revision": "7cb25202c5308095546e5a6a2b96480d9d3104e1",
-      "version": "{{< param oharaVersion >}}",
+      "version": "{{< ohara-version >}}",
       "aliveNodes": [],
       "jmxPort": 56726,
       "kind": "source",
@@ -293,9 +292,9 @@ The following information are updated by Ohara
       "xmx": 1024,
       "shabondi.class": "oharastream.ohara.shabondi.ShabondiSource",
       "nodeMetrics": {},
-      "imageName": "oharastream/shabondi:{{< param oharaVersion >}}",
+      "imageName": "oharastream/shabondi:{{< ohara-version >}}",
       "revision": "7cb25202c5308095546e5a6a2b96480d9d3104e1",
-      "version": "{{< param oharaVersion >}}",
+      "version": "{{< ohara-version >}}",
       "aliveNodes": [],
       "jmxPort": 56726,
       "kind": "source",

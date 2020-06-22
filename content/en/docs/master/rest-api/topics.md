@@ -9,7 +9,6 @@ menu:
   rest-api:
     parent: REST APIs
     weight: 170
-oharaVersion: 0.10.0    
 ---
 
 Ohara topic is based on kafka topic. It means the creation of topic on

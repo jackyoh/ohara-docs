@@ -9,9 +9,6 @@ menu:
   master:
     parent: Contents
     weight: 20
-
-oharaVersion: 0.10.0
-oharaCode: https://github.com/oharastream/ohara/tree/master
 ---
 
 Ohara custom connector is based on 
@@ -66,8 +63,8 @@ repositories {
          url "https://dl.bintray.com/oharastream/ohara"
      }
  }
-implementation "oharastream.ohara:ohara-common:{{< param oharaVersion >}}"
-implementation "oharastream.ohara:ohara-kafka:{{< param oharaVersion >}}"
+implementation "oharastream.ohara:ohara-common:{{< ohara-version >}}"
+implementation "oharastream.ohara:ohara-kafka:{{< ohara-version >}}"
 ```
 
 {{% alert hint %}}
@@ -141,7 +138,7 @@ for following data types:
 
 {{% alert hint %}}
 The default serializer is located at
-[Here]({{< param oharaCode >}}/ohara-common/src/main/java/oharastream/ohara/common/data/Serializer.java)
+[Here]({{< url-ohara-code >}}/ohara-common/src/main/java/oharastream/ohara/common/data/Serializer.java)
 {{% /alert %}}
 
 
@@ -984,7 +981,7 @@ public interface Storage extends Releasable {
 
 {{% alert hint %}}
 You can read the
-[FtpStorage]({{< param oharaCode >}}/ohara-connector/src/main/scala/oharastream/ohara/connector/ftp/FtpStorage.scala) 
+[FtpStorage]({{< url-ohara-code >}}/ohara-connector/src/main/scala/oharastream/ohara/connector/ftp/FtpStorage.scala) 
 as an example to see how to implement your own Storage.
 {{% /alert %}}
 

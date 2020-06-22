@@ -9,7 +9,6 @@ menu:
   rest-api:
     parent: REST APIs
     weight: 70
-oharaVersion: 0.10.0    
 ---
 
 Connector is core of application in Ohara
@@ -143,7 +142,7 @@ settings will introduce a error.
       "perf.frequency": "1000 milliseconds",
       "connector.class": "oharastream.ohara.connector.perf.PerfSource",
       "revision": "baafe4a3d875e5e5028b686c4f74f26cfd8b1b66",
-      "version": "{{< param oharaVersion >}}",
+      "version": "{{< ohara-version >}}",
       "columns": [],
       "nodeMetrics": {
         "node00": {
@@ -241,7 +240,7 @@ you cannot update a non-stopped connector.
       "perf.frequency": "1000 milliseconds",
       "connector.class": "oharastream.ohara.connector.perf.PerfSource",
       "revision": "baafe4a3d875e5e5028b686c4f74f26cfd8b1b66",
-      "version": "{{< param oharaVersion >}}",
+      "version": "{{< ohara-version >}}",
       "columns": [],
       "nodeMetrics": {
         "node00": {
@@ -335,7 +334,7 @@ the accepted query keys are listed below.
         "perf.frequency": "1000 milliseconds",
         "connector.class": "oharastream.ohara.connector.perf.PerfSource",
         "revision": "baafe4a3d875e5e5028b686c4f74f26cfd8b1b66",
-        "version": "{{< param oharaVersion >}}",
+        "version": "{{< ohara-version >}}",
         "columns": [],
       "nodeMetrics": {
         "node00": {
@@ -440,7 +439,7 @@ connector, and the response is 204 NoContent.
       "perf.frequency": "1000 milliseconds",
       "connector.class": "oharastream.ohara.connector.perf.PerfSource",
       "revision": "baafe4a3d875e5e5028b686c4f74f26cfd8b1b66",
-      "version": "{{< param oharaVersion >}}",
+      "version": "{{< ohara-version >}}",
       "columns": [],
       "nodeMetrics": {
         "node00": {

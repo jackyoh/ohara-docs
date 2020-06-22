@@ -9,7 +9,6 @@ menu:
   rest-api:
     parent: REST APIs
     weight: 160
-oharaVersion: 0.10.0
 ---
 
 Ohara Stream is a unparalleled wrap of kafka streaming. It leverages and
@@ -100,7 +99,7 @@ Create the properties of a stream.
 2. group (**string**) --- group name for current stream ; default value
    is "default"
 3. imageName (**string**) --- image name of stream used to ; default is
-   oharastream/stream:{{< param oharaVersion >}}
+   oharastream/stream:{{< ohara-version >}}
 4. nodeNames (**array(string)**) --- node name list of stream used to ;
    default is empty
 5. tags (**object**) --- a key-value map of user defined data ; default
@@ -122,7 +121,8 @@ topics.
 
 We only support one topic for current version. We will throw
 exception in start api if you assign more than 1 topic. We will
-support multiple topics on issue [#688](https://github.com/oharastream/ohara/issues/688)
+support multiple topics on issue [#688]({{< url-ohara-issue 688 >}})
+
 {{% /alert %}}
 
 10. to (**array(TopicKey)**) --- target topic ; default is empty array
@@ -134,7 +134,7 @@ topics.
 
 We only support one topic for current version. We will throw
 exception in start api if you assign more than 1 topic. We will
-support multiple topics on issue [#688](https://github.com/oharastream/ohara/issues/688)
+support multiple topics on issue [#688]({{< url-ohara-issue 688 >}})
 {{% /alert %}}
 
 * Example Request
@@ -166,7 +166,7 @@ support multiple topics on issue [#688](https://github.com/oharastream/ohara/iss
       "lastModified": 1579145546218,
       "tags": {},
       "xmx": 1024,
-      "imageName": "oharastream/stream:{{< param oharaVersion >}}",
+      "imageName": "oharastream/stream:{{< ohara-version >}}",
       "jarKey": {
         "group": "default",
         "name": "ohara-it-stream.jar"
@@ -178,7 +178,7 @@ support multiple topics on issue [#688](https://github.com/oharastream/ohara/iss
         }
       ],
       "revision": "b303f3c2e52647ee5e79e55f9d74a5e51238a92c",
-      "version": "{{< param oharaVersion >}}",
+      "version": "{{< ohara-version >}}",
       "aliveNodes": [],
       "stream.class": "oharastream.ohara.it.stream.DumbStream",
       "from": [
@@ -227,7 +227,7 @@ don't specify it.
       "lastModified": 1579145546218,
       "tags": {},
       "xmx": 1024,
-      "imageName": "oharastream/stream:{{< param oharaVersion >}}",
+      "imageName": "oharastream/stream:{{< ohara-version >}}",
       "jarKey": {
         "group": "default",
         "name": "ohara-it-stream.jar"
@@ -239,7 +239,7 @@ don't specify it.
         }
       ],
       "revision": "b303f3c2e52647ee5e79e55f9d74a5e51238a92c",
-      "version": "{{< param oharaVersion >}}",
+      "version": "{{< ohara-version >}}",
       "aliveNodes": [],
       "stream.class": "oharastream.ohara.it.stream.DumbStream",
       "from": [
@@ -292,7 +292,7 @@ the accepted query keys are listed below
         "lastModified": 1579145546218,
         "tags": {},
         "xmx": 1024,
-        "imageName": "oharastream/stream:{{< param oharaVersion >}}",
+        "imageName": "oharastream/stream:{{< ohara-version >}}",
         "jarKey": {
           "group": "default",
           "name": "ohara-it-stream.jar"
@@ -304,7 +304,7 @@ the accepted query keys are listed below
           }
         ],
         "revision": "b303f3c2e52647ee5e79e55f9d74a5e51238a92c",
-        "version": "{{< param oharaVersion >}}",
+        "version": "{{< ohara-version >}}",
         "aliveNodes": [],
         "stream.class": "oharastream.ohara.it.stream.DumbStream",
         "from": [
@@ -353,7 +353,7 @@ topics.
 
 we only support one topic for current version. We will throw
 exception in start api if you assign more than 1 topic. We will
-support multiple topics on issue [#688](https://github.com/oharastream/ohara/issues/688)
+support multiple topics on issue [#688]({{< url-ohara-issue 688 >}})
 {{% /alert %}}
 
 7. to (**option(array(string))**) --- target topic.
@@ -365,7 +365,7 @@ topics.
 
 we only support one topic for current version. We will throw
 exception in start api if you assign more than 1 topic. We will
-support multiple topics on issue [#688](https://github.com/oharastream/ohara/issues/688)
+support multiple topics on issue [#688]({{< url-ohara-issue 688 >}})
 {{% /alert %}}
 
 * Example Request
@@ -395,7 +395,7 @@ support multiple topics on issue [#688](https://github.com/oharastream/ohara/iss
       "lastModified": 1579153777586,
       "tags": {},
       "xmx": 1024,
-      "imageName": "oharastream/stream:{{< param oharaVersion >}}",
+      "imageName": "oharastream/stream:{{< ohara-version >}}",
       "jarKey": {
         "group": "default",
         "name": "ohara-it-stream.jar"
@@ -407,7 +407,7 @@ support multiple topics on issue [#688](https://github.com/oharastream/ohara/iss
         }
       ],
       "revision": "b303f3c2e52647ee5e79e55f9d74a5e51238a92c",
-      "version": "{{< param oharaVersion >}}",
+      "version": "{{< ohara-version >}}",
       "aliveNodes": [],
       "stream.class": "oharastream.ohara.it.stream.DumbStream",
       "from": [

@@ -9,7 +9,6 @@ menu:
   rest-api:
     parent: REST APIs
     weight: 100
-oharaVersion: 0.10.0
 oharaBranch: 0.10.0
 ---
 
@@ -45,7 +44,7 @@ the format of response of Ohara Configurator is shown below.
       "versionInfo": {
         "branch": "{{< param oharaBranch >}}",
         "revision": "b303f3c2e52647ee5e79e55f9d74a5e51238a92c",
-        "version": "{{< param oharaVersion >}}",
+        "version": "{{< ohara-version >}}",
         "date": "2020-01-08 06:05:47",
         "user": "root"
       },
@@ -74,7 +73,7 @@ the available variables for $service are shown below.
 * Example Response
     ```json
     {
-      "imageName": "oharastream/zookeeper:{{< param oharaVersion >}}",
+      "imageName": "oharastream/zookeeper:{{< ohara-version >}}",
       "settingDefinitions": [
         {
            "blacklist": [],
@@ -127,7 +126,7 @@ the available variables for $service are shown below.
 * Example Response
     ```json
     {
-      "imageName": "oharastream/broker:{{< param oharaVersion >}}",
+      "imageName": "oharastream/broker:{{< ohara-version >}}",
       "settingDefinitions": [
         {
           "blacklist": [],

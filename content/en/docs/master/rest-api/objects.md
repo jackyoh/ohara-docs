@@ -9,7 +9,6 @@ menu:
   rest-api:
     parent: REST APIs
     weight: 130
-oharaVersion: 0.10.0
 ---
 
 Object APIs offer a way to store anything to Configurator. It is useful

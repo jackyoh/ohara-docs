@@ -9,7 +9,6 @@ menu:
   rest-api:
     parent: REST APIs
     weight: 200
-oharaVersion: 0.10.0    
 ---
 
 [Zookeeper](https://zookeeper.apache.org) service is the base of all
@@ -25,29 +24,29 @@ room to enable you to overwrite somethings you do care.
 
 The properties which can be set by user are shown below.
 
-1. name (**string**) - cluster name. The legal character is number,
+1. name (**string**) --- cluster name. The legal character is number,
    lowercase alphanumeric characters, or '.'
-2. group (**string**) - cluster group. The legal character is number,
+2. group (**string**) --- cluster group. The legal character is number,
    lowercase alphanumeric characters, or '.'
-3. imageName (**string**) - docker image
-4. jmxPort (**int**) - zookeeper jmx port
-5. clientPort (**int**) - zookeeper client port
-6. electionPort (**int**) - used to select the zk node leader
-7. peerPort (**int**) - port used by internal communication
-8. nodeNames (**array(string)**) - the nodes running the zookeeper
+3. imageName (**string**) --- docker image
+4. jmxPort (**int**) --- zookeeper jmx port
+5. clientPort (**int**) --- zookeeper client port
+6. electionPort (**int**) --- used to select the zk node leader
+7. peerPort (**int**) --- port used by internal communication
+8. nodeNames (**array(string)**) --- the nodes running the zookeeper
    process
-9. tags (**object**) - the user defined parameters
+9. tags (**object**) --- the user defined parameters
 
 The following information are updated by Ohara.
 
-1. aliveNodes (**array(string)**) - the nodes that host the running
+1. aliveNodes (**array(string)**) --- the nodes that host the running
    containers of zookeeper
-2. state (**option(string)**) - only started/failed zookeeper has
+2. state (**option(string)**) --- only started/failed zookeeper has
    state (RUNNING or DEAD)
-3. error (**option(string)**) - the error message from a failed
+3. error (**option(string)**) --- the error message from a failed
    zookeeper. If zookeeper is fine or un-started, you won't get this
    field.
-4. lastModified (**long**) - last modified this jar time
+4. lastModified (**long**) --- last modified this jar time
 
 ## create a zookeeper properties {#create-properties}
 
@@ -75,7 +74,7 @@ The following information are updated by Ohara.
       "tags": {},
       "electionPort": 44371,
       "xmx": 1024,
-      "imageName": "oharastream/zookeeper:{{< param oharaVersion >}}",
+      "imageName": "oharastream/zookeeper:{{< ohara-version >}}",
       "aliveNodes": [],
       "initLimit": 10,
       "jmxPort": 33915,
@@ -124,7 +123,7 @@ the accepted query keys are listed below.
         "tags": {},
         "electionPort": 44371,
         "xmx": 1024,
-        "imageName": "oharastream/zookeeper:{{< param oharaVersion >}}",
+        "imageName": "oharastream/zookeeper:{{< ohara-version >}}",
         "aliveNodes": [],
         "initLimit": 10,
         "jmxPort": 33915,
@@ -167,7 +166,7 @@ use this request as POST
       "tags": {},
       "electionPort": 44371,
       "xmx": 1024,
-      "imageName": "oharastream/zookeeper:{{< param oharaVersion >}}",
+      "imageName": "oharastream/zookeeper:{{< ohara-version >}}",
       "aliveNodes": [],
       "initLimit": 10,
       "jmxPort": 12345,
@@ -221,7 +220,7 @@ value as the query parameter "?group=" if you don't specify it.
       "tags": {},
       "electionPort": 44371,
       "xmx": 1024,
-      "imageName": "oharastream/zookeeper:{{< param oharaVersion >}}",
+      "imageName": "oharastream/zookeeper:{{< ohara-version >}}",
       "aliveNodes": [],
       "initLimit": 10,
       "jmxPort": 33915,

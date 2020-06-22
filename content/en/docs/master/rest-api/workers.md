@@ -9,7 +9,6 @@ menu:
   rest-api:
     parent: REST APIs
     weight: 190
-oharaVersion: 0.10.0
 ---
 
 [Worker](https://kafka.apache.org/intro) is core of running connectors
@@ -138,7 +137,7 @@ double check what you configure!
       "lastModified": 1578982566359,
       "tags": {},
       "xmx": 2048,
-      "imageName": "oharastream/connect-worker:{{< param oharaVersion >}}",
+      "imageName": "oharastream/connect-worker:{{< ohara-version >}}",
       "offset.storage.topic": "346b839ea3e74387ab1eea409",
       "status.storage.replication.factor": 1,
       "group.id": "af4b4d49234a4848bb90fb452",
@@ -180,7 +179,7 @@ double check what you configure!
         "lastModified": 1578982566359,
         "tags": {},
         "xmx": 2048,
-        "imageName": "oharastream/connect-worker:{{< param oharaVersion >}}",
+        "imageName": "oharastream/connect-worker:{{< ohara-version >}}",
         "offset.storage.topic": "346b839ea3e74387ab1eea409",
         "status.storage.replication.factor": 1,
         "group.id": "af4b4d49234a4848bb90fb452",
@@ -234,7 +233,7 @@ this request as POST
       "lastModified": 1578982765738,
       "tags": {},
       "xmx": 2048,
-      "imageName": "oharastream/connect-worker:{{< param oharaVersion >}}",
+      "imageName": "oharastream/connect-worker:{{< ohara-version >}}",
       "offset.storage.topic": "346b839ea3e74387ab1eea409",
       "status.storage.replication.factor": 1,
       "group.id": "af4b4d49234a4848bb90fb452",
@@ -296,7 +295,7 @@ don't specify it.
       "lastModified": 1578982765738,
       "tags": {},
       "xmx": 2048,
-      "imageName": "oharastream/connect-worker:{{< param oharaVersion >}}",
+      "imageName": "oharastream/connect-worker:{{< ohara-version >}}",
       "offset.storage.topic": "346b839ea3e74387ab1eea409",
       "status.storage.replication.factor": 1,
       "group.id": "af4b4d49234a4848bb90fb452",
