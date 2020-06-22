@@ -12,8 +12,6 @@ menu:
     weight: 70
 ---
 
-:construction: Under construction :construction:
-
 Shabondi service play the role of a _http proxy service_ in the Pipeline
 of Ohara. If you want to integrate Ohara pipeline with your application,
 Shabondi is a good choice. Just send the simple http request to
@@ -28,10 +26,10 @@ Following is a simple diagram of Pipeline to demonstrate about both the source a
 
 ## Data format
 
-[//]: <> (TODO: fix the broken link)
-
-Both Shabondi source and sink use `Row <connector-datamodel>`{.interpreted-text role="ref"} in JSON format for data input and output. Row is a table structure data defined in
-Ohara code base. A row is comprised of multiple cells. Each cell has its **name** and **value**. Every row of your input data will be stored in the **Topic**.
+Both Shabondi source and sink use [Row]({{< relref "custom_connector.md#datamodel" >}}) in JSON format 
+for data input and output. Row is a table structure data defined in Ohara code base. 
+A row is comprised of multiple cells. Each cell has its **name** and **value**. 
+Every row of your input data will be stored in the **Topic**.
 
 A table:
 
@@ -73,12 +71,12 @@ Example of row in JSON format
 
 There are two ways to deploy Shabondi service
 
-[//]: <> (TODO: fix the broken link)
-
 - Ohara Manager: (TBD)
-- Use Configurator `REST API <rest-shabondi>`{.interpreted-text role="ref"} to create and start Shabondi service.
+- Use Configurator [REST API]({{< relref "rest-api/shabondis.md" >}}) to create 
+  and start Shabondi service.
 
-After a Shabondi service is properly configured, deploy and successfully started. It's ready to receive or send requests via HTTP.
+After a Shabondi service is properly configured, deploy and successfully started. 
+It's ready to receive or send requests via HTTP.
 
 ## Service REST API
 
@@ -89,10 +87,7 @@ requests and then writes to the connected **Topic**.
 
 #### Send Row
 
-[//]: <> (TODO: fix the broken link)
-
-Send a JSON data of `Row <connector-datamodel>`{.interpreted-text
-role="ref"} to Shabondi source service.
+Send a JSON data of [Row]({{< relref "custom_connector.md#datamodel" >}}) to Shabondi source service.
 
 * Request  
   POST /
@@ -103,7 +98,7 @@ role="ref"} to Shabondi source service.
 * Example 1 (Succeed)
   * Request
 
-    ```http
+    ```http request
     POST http://node00:58456 HTTP/1.1
     Content-Type: application/json
 
@@ -117,7 +112,7 @@ role="ref"} to Shabondi source service.
 
   * Response
 
-    ```http
+    ```http request
     HTTP/1.1 200 OK
     Server: akka-http/10.1.11
     Date: Tue, 19 May 2020 02:41:20 GMT
@@ -136,7 +131,7 @@ role="ref"} to Shabondi source service.
 
   * Response
 
-    ```http
+    ```http request
     HTTP/1.1 405 Method Not Allowed
     Server: akka-http/10.1.11
     Date: Tue, 19 May 2020 02:45:56 GMT
@@ -162,13 +157,13 @@ rows from the connected **Topic** and response it in JSON format.
 * Example 1 (Succeed)
   * Request
 
-    ```http
+    ```http request
     GET http://node00:58458/groups/g1 HTTP/1.1
     ```
 
   * Response
 
-    ```http
+    ```http request
     HTTP/1.1 200 OK
     Server: akka-http/10.1.11
     Date: Wed, 20 May 2020 06:18:44 GMT
@@ -194,13 +189,13 @@ rows from the connected **Topic** and response it in JSON format.
 * Example 2 - Failure response(Illegal group name)
   * Request
 
-    ```http
+    ```http request
     GET http://node00:58458/groups/g1-h HTTP/1.1
     ```
     
   * Response
     
-    ```http
+    ```http request
     HTTP/1.1 406 Not Acceptable
     Server: akka-http/10.1.11
     Date: Wed, 20 May 2020 07:34:10 GMT

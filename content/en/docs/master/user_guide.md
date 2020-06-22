@@ -9,11 +9,8 @@ menu:
   master:
     parent: Contents
     weight: 10
-    
 oharaVersion: 0.10.0
 ---
-
-:construction: Under construction :construction:
 
 This documentation is for Ohara users who try to exercise or test Ohara
 without writing any code. Ohara team design and implement Ohara to
@@ -27,12 +24,18 @@ and [Custom Stream]({{< relref "custom_stream.md" >}})).
 
 Ohara consists of many services, such as
 
-1. [Ohara Configurator]({{< relref "#configurator" >}}) --- the controller of Ohara. It cooperates other services and provides the [Restful APIs]({{< relref "rest-api.md" >}})
-2. [Ohara Manager]({{< relref "#manager" >}}) --- the UI service of Ohara. It offers a streaming flow called **pipeline**
-3. [Zookeeper]({{< relref "#zookeeper" >}}) --- works for Broker. It has charge of managing the configuration of topics and health of node
-4. [Broker]({{< relref "#broker" >}}) --- It provides the access of topics, topics' data durability and balance.
-5. [Worker]({{< relref "#worker" >}}) --- It hosts and execute [Custom Connector]({{< relref "custom_connector.md" >}})
-6. [Docker]({{< relref "#docker" >}}) --- It packages the configs, dependencies and binary required by services and execute them in a isolated environments
+1. [Ohara Configurator]({{< relref "#configurator" >}}) --- the controller of Ohara. 
+   It cooperates other services and provides the [Restful APIs]({{< relref "rest-api/" >}})
+2. [Ohara Manager]({{< relref "#manager" >}}) --- the UI service of Ohara. It offers a 
+   streaming flow called **pipeline**
+3. [Zookeeper]({{< relref "#zookeeper" >}}) --- works for Broker. It has charge of managing 
+   the configuration of topics and health of node
+4. [Broker]({{< relref "#broker" >}}) --- It provides the access of topics, topics' data 
+   durability and balance.
+5. [Worker]({{< relref "#worker" >}}) --- 
+   It hosts and execute [Custom Connector]({{< relref "custom_connector.md" >}})
+6. [Docker]({{< relref "#docker" >}}) --- It packages the configs, dependencies and binary 
+   required by services and execute them in a isolated environments
 7. [Kubernetes]({{< relref "#k8s" >}}) --- a management tool of docker instances
 
 Ohara has a complicated software stack, but most services are almost
@@ -41,7 +44,7 @@ ought to set up a zookeeper cluster and a broker cluster. There are ,
 unfortunately, a bunch of configs which you have to design and write for
 both cluster. Ohara auto-generates most configs for you as best as it
 can, and Ohara offers the the readable 
-[Restful APIs]({{< relref "rest-api.md" >}}) and friendly UI to
+[Restful APIs]({{< relref "rest-api/" >}}) and friendly UI to
 you. All complicated configs are replaced by some simple steps showed on
 UI. The [Quick Start]({{< relref "#quickstart" >}}) section teach you to exercise Ohara easily and quickly.
 
@@ -49,7 +52,8 @@ UI. The [Quick Start]({{< relref "#quickstart" >}}) section teach you to exercis
 
 ## Quick Start {#quickstart}
 
-The core component of Ohara is [Configurator]({{< relref "#configurator" >}}). After installing [related tools]({{< relref "#installation" >}}), you can set up a Configurator via following docker command.
+The core component of Ohara is [Configurator]({{< relref "#configurator" >}}). After installing 
+[related tools]({{< relref "#installation" >}}), you can set up a Configurator via following docker command.
 
 ```console
 $ docker run --rm -p 12345:12345 oharastream/configurator:{{< param oharaVersion >}} --port 12345
@@ -70,7 +74,8 @@ Please replace the **ip** by your host's address
 {{% /alert %}}
 
 
-Open your browser (we recommend [Google Chrome](https://www.google.com/intl/zh-TW/chrome/)) and link to [http://localhost:5050/](http://localhost:5050/)
+Open your browser (we recommend [Google Chrome](https://www.google.com/intl/zh-TW/chrome/)) 
+and link to [http://localhost:5050/](http://localhost:5050/)
 
 ------------------------------------------------------------------------
 
@@ -122,7 +127,8 @@ click this [link](https://docs.docker.com/install/linux/docker-ce/centos/).
 
 ### Download Ohara Images {#download-images}
 
-Ohara deploys docker images on [docker hub](https://hub.docker.com/u/oharastream). You can download images via `docker pull` command. All images are list below.
+Ohara deploys docker images on [docker hub](https://hub.docker.com/u/oharastream). 
+You can download images via `docker pull` command. All images are list below.
 
 1. oharastream/broker:{{< param oharaVersion >}}
 1. oharastream/zookeeper:{{< param oharaVersion >}}
@@ -160,7 +166,7 @@ All services host by Ohara Configurator are based on docker technique.
 By default Ohara Configurator use ssh to control the docker containers
 from remote nodes (see [Docker]({{< relref "#docker" >}}) section). 
 In this mode, please make sure the ssh account
-added by `Node APIs <rest-nodes>`{.interpreted-text role="ref"} should
+added by [Node APIs]({{< relref "nodes.md" >}}) should
 have sudo permission to run docker command (see
 [here](https://docs.docker.com/install/linux/linux-postinstall/) for
 related steps).
@@ -168,7 +174,7 @@ related steps).
 ### Keep the data of Configurator {#configurator-data}
 
 Ohara Configurator demand a folder to store `data` and
-`jars <rest-files>`{.interpreted-text role="ref"}. As Ohara Configurator
+[jars]({{< relref "rest-api/files.md" >}}). As Ohara Configurator
 is running in docker container, you have to mount the volume, which is
 located on container host, on the home folder of Ohara Configurator if
 you want to keep all data of Ohara Configurator. The following example
@@ -192,10 +198,10 @@ folder. Otherwise, Ohara Configurator flush all data to a random folder.
 
 **How to solve the start configurator container permission denied issue?**
 
-1.  You must confirm your host username is the ohara and UID is 1000.
-    Please refer to issue [#2573](https://github.com/oharastream/ohara/issues/2573)
-2.  Please confirm the **/tmp/configurator** host path owner is ohara user
-    and have to write permission.
+1. You must confirm your host username is the ohara and UID is 1000.
+   Please refer to issue [#2573](https://github.com/oharastream/ohara/issues/2573)
+2. Please confirm the **/tmp/configurator** host path owner is ohara user
+   and have to write permission.
 
 ### Execute Manager
 
@@ -253,7 +259,7 @@ the component in which you have interest.
 
 Ohara Configurator leverages the akka-http to implements the rest server
 and handle the conversion of json objects. You can click our
-`RESTful API docs <rest>`{.interpreted-text role="ref"} to see all
+[RESTful API docs]({{< relref "rest-api/" >}}) to see all
 public APIs and introduction.
 
 The APIs supported by Ohara Configurator is only the Restful APIs. Of
@@ -267,10 +273,12 @@ our solution. For another reason, Ohara Configurator is not in charge of
 I/O flow. Coordinating all services requires small bandwidth only. We
 don't need to care for the performance issue about Restful APIs.
 
-> You can use our internal scala APIs to control Configurator. The
-> library is called ohara-client and it covers all Restful APIs of
-> Configurator. However, we don't guarantee any compatibility for
-> ohara-client.
+{{% alert hint %}}
+You can use our internal scala APIs to control Configurator. The
+library is called ohara-client and it covers all Restful APIs of
+Configurator. However, we don't guarantee any compatibility for
+ohara-client.
+{{% /alert %}}
 
 ### Store of Configurator {#configurator-store}
 
@@ -284,9 +292,9 @@ folder on docker container.
 ### Cache of Configurator {#configurator-cache}
 
 The cost of coordinating countless services is the big **latency**. For
-example, `Topic APIs <rest-topics>`{.interpreted-text role="ref"} allows
+example, [Topic APIs]({{< relref "topics.md" >}}) allows
 you to fetch metrics from different
-`broker clusters <rest-brokers>`{.interpreted-text role="ref"}. Ohara
+[broker clusters]({{< relref "brokers.md" >}}). Ohara
 Configurator has to file a bunch of connections to different clusters to
 retrieve all requisite information, and, of course, the **connections**
 bring the large latency to the GET request. Hence, Ohara Configurator
@@ -301,14 +309,10 @@ of building connections to remote clusters.
 Apart from the data flow, Ohara Configurator is also doable to manage
 clusters for you. For instance, you can
 
-1.  add `node <rest-nodes>`{.interpreted-text role="ref"} to Ohara
-    Configurator
-2.  deploy a `zookeeper cluster <rest-zookeepers>`{.interpreted-text
-    role="ref"} on the node
-3.  deploy a `broker cluster <rest-brokers>`{.interpreted-text
-    role="ref"} on the node as well
-4.  deploy a `worker cluster <rest-workers>`{.interpreted-text
-    role="ref"} on the node
+1.  add [node]({{< relref "nodes.md" >}}) to Ohara Configurator
+2.  deploy a [zookeeper cluster]({{< relref "zookeepers.md" >}}) on the node
+3.  deploy a [broker cluster]({{< relref "brokers.md" >}}) on the node as well
+4.  deploy a [worker cluster]({{< relref "workers.md" >}}) on the node
 5.  finally, you can run a connector to stream your data and all
     services you have created are hosted by Ohara Configurator
 
@@ -386,38 +390,38 @@ and stream application in these pages.
 
 {{< figure src="../img/workspaces.png" title="Ohara Manager Workspaces page" lightbox="true" >}}
 
--   **Overview**:
+- **Overview**:
 
-    Overview page is like a dashboard of the workspace. You can view the
-    services, connectors, topics and stream jars that are using in this
-    workspace
+  Overview page is like a dashboard of the workspace. You can view the
+  services, connectors, topics and stream jars that are using in this
+  workspace
 
-    {{< figure src="../img/workspaces_overview.png" lightbox="true" >}}
+  {{< figure src="../img/workspaces_overview.png" lightbox="true" >}}
 
--   **Nodes**:
+- **Nodes**:
 
-    When creating a workspace, you can choose which node to deploy your
-    services. But you tweak the node settings here.
+  When creating a workspace, you can choose which node to deploy your
+  services. But you tweak the node settings here.
 
-    {{< figure src="../img/workspaces_nodes.png" lightbox="true" >}}
+  {{< figure src="../img/workspaces_nodes.png" lightbox="true" >}}
 
--   **Topics**:
+- **Topics**:
 
-    You can add new topics to your workspace as well as deleting them
-    here.
+  You can add new topics to your workspace as well as deleting them
+  here.
 
-    {{< figure src="../img/workspaces_topics.png" lightbox="true" >}}
+  {{< figure src="../img/workspaces_topics.png" lightbox="true" >}}
 
--   **Stream jars**:
+- **Stream jars**:
 
-    Same like the topics page, you can add and delete stream jars in
-    this page
+  Same like the topics page, you can add and delete stream jars in
+  this page
 
-    {{< figure src="../img/workspaces_stream_jars.png" lightbox="true" >}}
+  {{< figure src="../img/workspaces_stream_jars.png" lightbox="true" >}}
 
 If you'd like to learn more about the development setup or have issue
-starting/working with it. Please see Ohara Manager's
-`Development Guideline <managerdev>`{.interpreted-text role="ref"}
+starting/working with it. Please see 
+[Ohara Manager Development Guideline]({{< relref "manager_dev_guide.md" >}})
 
 ------------------------------------------------------------------------
 
@@ -433,8 +437,8 @@ still doable to access zookeeper via any zk client if you have to.
 
 As a result of algorithm used by zookeeper, we recommend your zookeeper
 cluster should have 2n + 1 nodes which can address the best reliability
-and availability ([related
-discussion](https://stackoverflow.com/questions/4228227/what-does-2n-1-quorum-mean)).
+and availability 
+([related discussion](https://stackoverflow.com/questions/4228227/what-does-2n-1-quorum-mean)).
 In most cases, running a zookeeper cluster with 3 servers is enough to
 your production because we don't put our data flow on zookeeper cluster.
 However, you should consider higher number of nodes if your production
@@ -456,11 +460,10 @@ dataDir=/tmp/zookeeper/data
 server.0=node00:2888:3888
 ```
 
-Most options are auto-generated by Ohara Configurator, and and
-`Zookeeper APIs <rest-zookeepers-create-properties>`{.interpreted-text
-role="ref"} displays the configurable settings to user.. Feel free to
-file an issue to Ohara community if you have better configs for
-zookeeper.
+Most options are auto-generated by Ohara Configurator, and
+[Zookeeper APIs]({{< relref "rest-api/zookeepers.md#create-properties" >}}) 
+displays the configurable settings to user. 
+Feel free to file an issue to Ohara community if you have better configs for zookeeper.
 
 ------------------------------------------------------------------------
 
@@ -472,9 +475,9 @@ you have to build a broker cluster before going on your streaming trip.
 Ohara that all applications on Ohara goes through brokers to switch
 data. There are many stories about Ohara leverages the broker to
 complete countless significant works. But the most important usage of
-Brokers for Ohara is the `Topic <rest-topics>`{.interpreted-text
-role="ref"}. Each endpoint in
-`Pipeline <rest-pipelines>`{.interpreted-text role="ref"} must connect
+Brokers for Ohara is the [Topic]({{< relref "topics.md" >}}). 
+Each endpoint in
+[Pipeline]({{< relref "pipelines.md" >}}) must connect
 to/from a topic, and each topic in Ohara is mapped to a topic in broker.
 It means all data sent/received to/from topic is implemented by a true
 connection to a broker.
@@ -482,13 +485,13 @@ connection to a broker.
 As a result of addressing scalability, a topic is split to many
 **partitions** distributed on different brokers. It implies the number
 of brokers directly impact the performance of Ohara
-`Pipeline <rest-pipelines>`{.interpreted-text role="ref"}. If you are
+[Pipeline]({{< relref "pipelines.md" >}}). If you are
 streaming a bunch of data and there is only a broker in your broker
 cluster, you will get a slow streaming since all data in the streaming
 are processed by the single broker. Hence, please be careful on
 deploying your broker cluster. But you don't worry about the incorrect
 settings to cluster. Ohara provides many flexible
-`Broker APIs <rest-brokers>`{.interpreted-text role="ref"} to
+[Broker APIs]({{< relref "brokers.md" >}}) to
 increase/decrease nodes of a running broker cluster. You are able to
 scale your cluster up/down arbitrarily via Ohara APIs.
 
@@ -519,7 +522,7 @@ advertised.listeners=PLAINTEXT://node00:9092
 ```
 
 Most options are auto-generated by Ohara Configurator, and
-`Broker APIs <rest-brokers-create>`{.interpreted-text role="ref"}
+[Broker APIs]({{< relref "rest-api/brokers.md" >}})
 displays the configurable settings to user. Ohara community always
 welcomes user to raise issue about **we should give a better default
 configs** or **we should enable user to change xxx config**.
@@ -547,7 +550,7 @@ handle following issues for you.
    APIs, which is exposed to your application, that you can control the
    offsets of data. 1.balance - worker cluster keeps tracing the
    loading for each worker node and auto-balance the loading for heavy
-   one. Via `Ohara APIs <rest-workers>`{.interpreted-text role="ref"},
+   one. Via [Ohara APIs]({{< relref "rest-api/workers.md" >}}),
    you can increase the node of a running worker cluster easily if you
    do want to scala the throughput up.
 
@@ -582,7 +585,7 @@ rest.advertised.port=8083
 ```
 
 Most options are auto-generated by Ohara Configurator, and
-`Worker APIs <rest-workers-create>`{.interpreted-text role="ref"}
+[Worker APIs]({{< relref "workers.md#rest-workers-create" >}})
 displays the configurable settings to user. Welcome you to file an issue
 to request more control right of worker cluster.
 
@@ -591,19 +594,20 @@ to request more control right of worker cluster.
 ## Docker {#docker}
 
 All services host by Ohara are based on docker containers, such as
-[Configurator]({{< relref "#configurator" >}}), 
-[Manager]({{< relref "#manager" >}}),
+[Configurator]({{< relref "#configurator" >}}), [Manager]({{< relref "#manager" >}}),
 [Zookeeper]({{< relref "#zookeeper" >}}),
-[Broker]({{< relref "#broker" >}}) and
-[Worker]({{< relref "#worker" >}}). 
+[Broker]({{< relref "#broker" >}}) and [Worker]({{< relref "#worker" >}}). 
 You should install suggested version of Docker before enjoying Ohara service 
 (see [how to build]({{< relref "howtobuild/build-ohara.md" >}}) for prerequisite).
 
 The post-installation for all docker nodes are listed below.
 
-1. [Install the supported version of docker]({{< relref "howtobuild/build-ohara.md#prerequisites" >}}) - Ohara community does not support the legacy docker.
-2. [download all ohara images]({{< relref "#download-images" >}}) - Ohara Configurator expect all images are available from local disk rather than network.
-3. [create a user account which can access docker without sudo](https://docs.docker.com/install/linux/linux-postinstall/) - Ohara Configurator may use ssh to control docker of remote node.
+1. [Install the supported version of docker]({{< relref "howtobuild/build-ohara.md#prerequisites" >}}) - 
+   Ohara community does not support the legacy docker.
+2. [download all ohara images]({{< relref "#download-images" >}}) - 
+   Ohara Configurator expect all images are available from local disk rather than network.
+3. [create a user account which can access docker without sudo](https://docs.docker.com/install/linux/linux-postinstall/) - 
+   Ohara Configurator may use ssh to control docker of remote node.
 
 {{% alert note %}}
 all containers created by Ohara, which is on docker mode, have a
@@ -647,15 +651,16 @@ of zookeeper service will have label - createdByOhara=k8s.
 
 #### Hardware requirement
 
-Note: Ohara support install Kubernetes shell script OS only CentOS7
-
 - 2 CPUs or more
 - 2 GB or more of RAM per machine
 - Full network connectivity between all machines in the cluster
 - Swap disabled
 
-More details is
+{{% alert hint %}}
+- Ohara support install Kubernetes shell script OS only CentOS7
+- More details is
 [here](https://kubernetes.io/docs/setup/independent/install-kubeadm/#before-you-begin)
+{{% /alert %}}
 
 #### Step 1. Install Kubernetes master node
 
@@ -668,7 +673,7 @@ More details is
 **Why change to root user?**
 Use the root user to install Kubernetes is simple and convenient. Avoid
 changing not an admin user. Of course, you can use the admin user and
-add the \"sudo\" keyword to execute install the Kubernetes shell script.
+add the "sudo" keyword to execute install the Kubernetes shell script.
 {{% /alert %}}
 
 - Change directory to `kubernetes/distribute`
@@ -722,7 +727,7 @@ For example:
 #### Step 3. Ensure the K8S API server is running properly
 
 - Log into Kubernetes master and use the following command to see if these
-Kubernetes nodes are running properly:
+  Kubernetes nodes are running properly:
     ```console
     # kubectl get nodes
     ```
@@ -740,10 +745,10 @@ Kubernetes nodes are running properly:
 - Below is setting autostart the command to run the Kubernetes API
   proxy server `(default port is 8080)`:
 
-```console
-# systemctl enable k8sproxyserver.service
-# systemctl start k8sproxyserver.service
-```
+    ```console
+    # systemctl enable k8sproxyserver.service
+    # systemctl start k8sproxyserver.service
+    ```
 
 #### How to use Kubernetes in Ohara?
 

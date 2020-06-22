@@ -15,7 +15,7 @@ menu:
 
 - OpenJDK 11 
 - Scala 2.13.2
-- Gradle 6.4.1
+- Gradle 6.5
 - Node.js 8.12.0
 - Yarn 1.13.0 or greater
 - Docker 19.03.8 (Docker multi-stage, which is supported by Docker 17.05 or higher, is required in building ohara images. see [Use multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) for more details)

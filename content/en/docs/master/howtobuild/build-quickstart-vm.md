@@ -17,14 +17,14 @@ weight: 1
 
 ## Prerequisites
 
--   Operation system: Linux
--   [Make](https://en.wikipedia.org/wiki/Make_(software)): Make is a
-    build automation tool that automatically builds executable programs.
-    **Make** is already built in Linux or macOS.
--   [Packer](https://www.packer.io/) 1.4+: Packer is an open source tool
-    for creating identical machine images for multiple platforms from a
-    single source configuration.
--   [VirtualBox](https://www.virtualbox.org/) 6.0+
+- Operation system: Linux
+- [Make](https://en.wikipedia.org/wiki/Make_(software)): Make is a
+  build automation tool that automatically builds executable programs.
+  **Make** is already built in Linux or macOS.
+- [Packer](https://www.packer.io/) 1.4+: Packer is an open source tool
+  for creating identical machine images for multiple platforms from a
+  single source configuration.
+- [VirtualBox](https://www.virtualbox.org/) 6.0+
 
 ## Build OVA file
 
@@ -71,7 +71,7 @@ The OVA file will be output to: build/ohara-quickstart-{OHARA\_VER}.ova
 
 
 {{% alert note %}} 
-Currently, we use Ubuntu 18.04.03 LTS as Quickstart VM\'s operation
+Currently, we use Ubuntu 18.04.03 LTS as Quickstart VM's operation
 system. Packer will try to find the ubuntu iso file in the
 **quickstart/.cache** folder first, and then download the [Ubuntu iso
 file](http://cdimage.ubuntu.com/ubuntu/releases/bionic/release/ubuntu-18.04.3-server-amd64.iso)

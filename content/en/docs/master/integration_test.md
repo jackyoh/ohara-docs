@@ -11,8 +11,6 @@ menu:
     weight: 90
 ---
 
-:construction: Under construction :construction:
-
 **How to deploy ohara integration test to QA environment?**
 
 ## Node 裡需要安裝的工具

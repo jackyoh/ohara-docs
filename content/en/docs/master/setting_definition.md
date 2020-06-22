@@ -12,8 +12,6 @@ menu:
     weight: 60
 ---
 
-:construction: Under construction :construction:
-
 A powerful application always has a complicated configuration. In order
 to be a best friend of Ohara users, Ohara provides a method which can
 return the details of setting definitions, and ohara suggests that all
@@ -28,9 +26,8 @@ have any settings, you can just skip this section.
 SettingDef is a class used to describe the details of **a** setting. It
 consists of following arguments.
 
-[//]: <> (TODO: fix the broken link)
-
-1. [reference]({{< relref "#setting-reference" >}})(**string**) --- works for ohara manager. It represents the reference of value.
+1. [reference]({{< relref "#setting-reference" >}})(**string**) --- works for ohara manager. 
+   It represents the reference of value.
 1. group (**string**) --- the group of this setting (all core setting are in core group)
 1. orderInGroup (**int**) --- the order in group
 1. displayName (**string**) --- the readable name of this setting
@@ -44,21 +41,20 @@ consists of following arguments.
     - REQUIRED --- this field has no default and user MUST define something for it.
     - OPTIONAL --- this field has no default and user does NOT need to define something for it.
     - RANDOM_DEFAULT --- this field has a "random" default value
-1. defaultValue (**object**) --- the default value. the type is equal to what valueType defines but we only allow string, number and boolean type to have default value currently.
+1. defaultValue (**object**) --- the default value. the type is equal to what valueType 
+   defines but we only allow string, number and boolean type to have default value currently.
 1. documentation (**string**) --- the explanation of this definition
 1. internal (**boolean**) --- true if this setting is assigned by system automatically.
 1. tableKeys (**array(object)**) --- the description to Type.TABLE
-    - tableKeys[i].name - the column name
-    - tableKeys[i].type - acceptable type (string, number and boolean)
-    - tableKeys[i].recommendedValues - recommended values (it is legal to enter other values you prefer)
-
-[//]: <> (TODO: fix the broken link)
+    - tableKeys[i].name --- the column name
+    - tableKeys[i].type --- acceptable type (string, number and boolean)
+    - tableKeys[i].recommendedValues --- recommended values 
+      (it is legal to enter other values you prefer)
 
 {{% alert hint %}}
-You can call `Worker APIs <rest-workers>`{.interpreted-text role="ref"}
-to get all connectors' setting definitions, and use
-`Stream APIs <rest-stream>`{.interpreted-text role="ref"} to get all
-stream setting definitions.
+You can call [Worker APIs]({{< relref "workers.md" >}})
+to get all connectors' setting definitions, and use [Stream APIs]({{< relref "streams.md" >}}) 
+to get all stream setting definitions.
 {{% /alert %}}
 
 Although a SettingDef can include many elements, you can simply build a
@@ -66,7 +62,9 @@ SettingDef with only what you need. An extreme example is that you can
 create a SettingDef with only key.
 
 ```java
-SettingDef.builder().key(key).build();
+SettingDef.builder()
+    .key(key)
+    .build();
 ```
 
 Notwithstanding it is flexible to build a SettingDef, we encourage
@@ -93,7 +91,10 @@ default values to most of settings as much as possible. Assigning a
 default value to a SettingDef is a piece of cake.
 
 ```java
-SettingDef.builder().key(key).optional(defaultValue).build();
+SettingDef.builder()
+    .key(key)
+    .optional(defaultValue)
+    .build();
 ```
 
 {{% alert hint %}}
@@ -101,7 +102,7 @@ the default value is declared as **string** type as it must be **readable** in R
 {{% /alert %}}
 
 After calling the **optional(String)** method, the response, created by
-`Worker APIs <rest-workers>`{.interpreted-text role="ref"} for example,
+[Worker APIs]({{< relref "rest-api/workers.md" >}}) for example,
 will display the following information.
 
 ```json
@@ -113,9 +114,8 @@ will display the following information.
 
 {{% alert hint %}}
 The default value will be added to
-`TaskSetting <connector-source-start>`{.interpreted-text role="ref"}
-automatically if the specified key is not already associated with a
-value.
+[TaskSetting]({{< relref "custom_connector.md#source-start" >}})
+automatically if the specified key is not already associated with a value.
 {{% /alert %}}
 
 
@@ -124,19 +124,19 @@ value.
 You can declare a **readonly** setting that not only exposes something
 of your application to user but also remind user the setting can't be
 changed at runtime. For instance, the information of
-`version <connector-version>`{.interpreted-text role="ref"} is fixed
+[version]({{< relref "custom_connector.md#version" >}}) is fixed
 after you have completed your connector so it is not an **editable**
 setting. Hence, ohara define a setting for **version** with a readonly
 label. By the way, you should assign a default value to a readonly
 setting since a readonly setting without default value is really weird.
-There is a example of creating a readonly setting.
+There is an example of creating a readonly setting.
 
 ```java
 SettingDef.builder()
- .key(key)
- .optional(defaultValue)
- .permission(SettingDef.Permission.READ_ONLY)
- .build();
+    .key(key)
+    .optional(defaultValue)
+    .permission(SettingDef.Permission.READ_ONLY)
+    .build();
 ```
 
 {{% alert hint %}}
@@ -147,15 +147,15 @@ is declared readonly.
 
 ## Setting Reference
 
-This element is a specific purpose. It is used by Ohara manager (UI) only. If you don't have interest in UI, you can just ignore this element. However, we still list the available values here.
+This element is a specific purpose. It is used by Ohara manager (UI) only. 
+If you don't have interest in UI, you can just ignore this element. 
+However, we still list the available values here.
 
 * NODE
 * TOPIC
-* ZOOKEEPER_CLUSTER
-* BROKER_CLUSTER
-* WORKER_CLUSTER
-* FILE
-* VOLUME
+* ZOOKEEPER
+* BROKER
+* WORKER
 
 {{% alert hint %}}
 For each reference value, it may have different type and will produce
@@ -181,11 +181,14 @@ which means the request should "accept one topic of string type"
 TopicKey List
 
 ```java
-SettingDef.builder().key("topicKeys").reference(Reference.TOPIC).required(Type.OBJECT_KEYS).build();
+SettingDef.builder()
+    .key("topicKeys")
+    .reference(Reference.TOPIC)
+    .required(Type.OBJECT_KEYS)
+    .build();
 ```
 
-which means the request should "accept topic list of **TopicKey**
-type"
+which means the request should "accept topic list of **TopicKey** type"
 
 ```json
 {
@@ -207,7 +210,11 @@ type"
 Topic String List
 
 ```java
-SettingDef.builder().key("topics").reference(Reference.TOPIC).required(Type.ARRAY).build();
+SettingDef.builder()
+    .key("topics")
+    .reference(Reference.TOPIC)
+    .required(Type.ARRAY)
+    .build();
 ```
 
 which means the request should "accept topic list of string type"
@@ -222,7 +229,7 @@ which means the request should "accept topic list of string type"
 
 In a custom application, the settings could have various data type. In
 order to display correct data type in ohara manager and leverage the
-benefit of `type checker<checker>`{.interpreted-text role="ref"}, we
+benefit of [type checker]({{< relref "#checker" >}}), we
 strongly suggest you to define the correct data type for each setting.
 
 The following data types are supported currently.
@@ -239,7 +246,10 @@ String type represents that the data should be a string. The value must
 be able cast to **java.lang.String**
 
 ```java
-SettingDef.builder().key(key).required(Type.STRING).build();
+SettingDef.builder()
+    .key(key)
+    .required(Type.STRING)
+    .build();
 ```
 
 #### Type.POSITIVE_SHORT
@@ -249,7 +259,10 @@ value must be able cast to **java.lang.Short**. Noted: only positive
 number is acceptable
 
 ```java
-SettingDef.builder().key(key).required(Type.POSITIVE_SHORT).build();
+SettingDef.builder()
+    .key(key)
+    .required(Type.POSITIVE_SHORT)
+    .build();
 ```
 
 #### Type.SHORT
@@ -258,7 +271,10 @@ Short type represents that the data should be a 2-bytes integer. The
 value must be able cast to **java.lang.Short**
 
 ```java
-SettingDef.builder().key(key).required(Type.SHORT).build();
+SettingDef.builder()
+    .key(key)
+    .required(Type.SHORT)
+    .build();
 ```
 
 #### Type.POSITIVE_INT
@@ -268,7 +284,10 @@ must be able cast to **java.lang.Integer**. Noted: only positive number
 is acceptable
 
 ```java
-SettingDef.builder().key(key).required(Type.POSITIVE_INT).build();
+SettingDef.builder()
+    .key(key)
+    .required(Type.POSITIVE_INT)
+    .build();
 ```
 
 #### Type.INT
@@ -276,8 +295,11 @@ SettingDef.builder().key(key).required(Type.POSITIVE_INT).build();
 Int type represents that the data should be a 4-bytes integer. The value
 must be able cast to **java.lang.Integer**
 
-``` {.java}
-SettingDef.builder().key(key).required(Type.INT).build();
+```java
+SettingDef.builder()
+    .key(key)
+    .required(Type.INT)
+    .build();
 ```
 
 #### Type.POSITIVE_LONG
@@ -287,7 +309,10 @@ value must be able cast to **java.lang.Long**. Noted: only positive
 number is acceptable
 
 ```java
-SettingDef.builder().key(key).required(Type.POSITIVE_LONG).build();
+SettingDef.builder()
+    .key(key)
+    .required(Type.POSITIVE_LONG)
+    .build();
 ```
 
 #### Type.LONG
@@ -296,17 +321,23 @@ Long type represents that the data should be a 8-bytes integer. The
 value must be able cast to **java.lang.Long**
 
 ```java
-SettingDef.builder().key(key).required(Type.LONG).build();
+SettingDef.builder()
+    .key(key)
+    .required(Type.LONG)
+    .build();
 ```
 
 #### Type.POSITIVE_DOUBLE
 
-Double type represents that the data should be a 8-bytes floating point.
+Double type represents that the data should be a 8-bytes floating-point.
 The value must be able cast to **java.lang.Double**. Noted: only
 positive number is acceptable
 
 ```java
-SettingDef.builder().key(key).required(Type.POSITIVE_DOUBLE).build();
+SettingDef.builder()
+    .key(key)
+    .required(Type.POSITIVE_DOUBLE)
+    .build();
 ```
 
 #### Type.DOUBLE
@@ -315,7 +346,10 @@ Double type represents that the data should be a 8-bytes floating point.
 The value must be able cast to **java.lang.Double**
 
 ```java
-SettingDef.builder().key(key).required(Type.DOUBLE).build();
+SettingDef.builder()
+    .key(key)
+    .required(Type.DOUBLE)
+    .build();
 ```
 
 #### Type.ARRAY
@@ -333,7 +367,10 @@ element in an array.
 ```
 
 ```java
-SettingDef.builder().key(key).required(Type.ARRAY).build();
+SettingDef.builder()
+    .key(key)
+    .required(Type.ARRAY)
+    .build();
 ```
 
 {{% alert hint %}}
@@ -357,7 +394,10 @@ to display a value that is a class. The value must be able cast to
 **java.lang.String**.
 
 ```java
-SettingDef.builder().key(key).required(Type.CLASS).build();
+SettingDef.builder()
+    .key(key)
+    .required(Type.CLASS)
+    .build();
 ```
 
 #### Type.PASSWORD
@@ -367,7 +407,10 @@ the value by **hidden** symbol in APIs. if the data type is used as
 password. The value must be able cast to **java.lang.String**.
 
 ```java
-SettingDef.builder().key(key).required(Type.PASSWORD).build();
+SettingDef.builder()
+    .key(key)
+    .required(Type.PASSWORD)
+    .build();
 ```
 
 #### Type.JDBC_TABLE
@@ -380,7 +423,7 @@ arguments according to other arguments. It means we can't connect to
 remote database to check the existence of input table.
 
 It is ok to replace this field by Type.STRING if you don't use Ohara
-Manager. Nevertheless, we still encourage developer to choose the
+Manager. Nevertheless, we still encourage the developer to choose the
 **fitting** type for your setting if you demand your user to input a
 database table.
 
@@ -393,7 +436,11 @@ a case that declares a table having two columns called **c0** and
 **c1**.
 
 ```java
-SettingDef.builder().key(key).tableKeys(Arrays.asList("c0", "c1")).required(Type.TABLE).build();
+SettingDef.builder()
+    .key(key)
+    .tableKeys(Arrays.asList("c0", "c1"))
+    .required(Type.TABLE)
+    .build();
 ```
 
 The legal value for above setting definition is shown below.
@@ -419,7 +466,7 @@ The above example implies there is a table having two columns called
 the input value **must** match all keys in.
 
 How to get the description of above **keys** ? If the setting type is
-**table**, the setting must have **tableKeys**. It is a array of string
+**table**, the setting must have **tableKeys**. It is an array of string
 which shows the keys used in the table type. For instance, a setting
 having table type is shown below.
 
@@ -458,14 +505,15 @@ the default value to table value is empty
 #### Type.DURATION
 
 The time-based amount of time is a common setting in our world. However,
-it is also hard to reach the consensus about the **string representation** for a duration. For instance, the `java.time.Duration`
-prefers ISO-8601, such as PT10S. The scala.concurrent.duration.Duration
+it is also hard to reach the consensus about the **string representation** 
+for a duration. For instance, the `java.time.Duration`
+prefers ISO-8601, such as PT10S. The scala.concurrent.duration.Duration 
 prefers simple format, such as 10 seconds. Ohara offers a official
 support to Duration type so as to ease the pain of using string in
 connector. When you declare a setting with duration type, ohara provides
 the default check which casts input value to java Duration and scala
 Duration. Also, your connector can get the **Duration** from
-`TaskSetting <connector-source-start>`{.interpreted-text role="ref"}
+[TaskSetting]({{< relref "custom_connector.md#source-start" >}})
 easily without worrying about the conversion between java and scala.
 Furthermore, connector users can input both java.Duration and
 scala.Duration when starting connector.
@@ -477,7 +525,7 @@ the ISO-860 duration format PnDTnHnMn.nS
 
 Remote port is a common property to connector. For example, the ftp
 connector needs port used to connect to source/target ftp server in
-remote . Inputting a illegal port can destroy connector easily.
+remote . Inputting an illegal port can destroy connector easily.
 Declaring your type of value to Port involve a check that only the port
 which is smaller than 65536 and bigger than zero can be accepted. Other
 port value will be rejected in starting connector.
@@ -485,7 +533,7 @@ port value will be rejected in starting connector.
 #### Type.BINDING_PORT
 
 This type is similar to Type.PORT except that the value mapped to
-BINDING_PORT has a extra check to the availability on the target nodes.
+BINDING_PORT has an extra check to the availability on the target nodes.
 For example, you define value 5555 as a BINDING_PORT, and you will get
 a exception when you try to deploy your code on the node which is using
 port 5555 as well. The legal value of binding port is between [0, 65535].
@@ -493,7 +541,7 @@ port 5555 as well. The legal value of binding port is between [0, 65535].
 #### Type.OBJECT_KEY
 
 object key represents a format of
-**oharastream.ohara.common.setting.ObjectKey** for specific object. It
+**oharastream.ohara.common.setting.ObjectKey** for a specific object. It
 consists "group" and "name" fields. In a custom application, you
 should check the request contains both fields.
 
@@ -510,7 +558,7 @@ should check the request contains both fields.
 
 OBJECT_KEYS represents a list of
 **oharastream.ohara.common.setting.Obj**. Note the type of the plural
-char "s". It means the request value should pass a array.
+char "s". It means the request value should pass an array.
 
 ```json
 {
@@ -554,11 +602,14 @@ In Ohara world, most components have a lot of configs to offers various
 usage in production. In order to simplify the settings, most configs
 have default value and you can trace Necessary field to know that.
 
-Necessary field has four values.
+Necessary field has three values.
 
-1. **REQUIRED** - this value has no default value, and it must be defined. You may get error if you don't give any value to it.
-1. **OPTIONAL** - this value has no default value, but it is ok to leave nothing.
-1. **RANDOM_DEFAULT** - the default value assigned to this value is random. For example, all objects' name has a random string by default; The binding port field has a random free port by default.
+1. **REQUIRED** --- this value has no default value, and it must be defined. 
+   You may get error if you don't give any value to it.
+1. **OPTIONAL** --- this value has no default value, but it is ok to leave nothing.
+1. **RANDOM_DEFAULT** --- the default value assigned to this value is random. 
+   For example, all objects' name has a random string by default; The binding 
+   port field has a random free port by default.
 
 ## Checker
 
@@ -570,14 +621,14 @@ either java.time.Duration or scala.duration.Duration. However, you are
 going to design a complicated connector which has specific limit for
 input value.
 
-## Blacklist
+## DenyList
 
-The blacklist is useful information that it offers following checks.
+The denyList is useful information that it offers following checks.
 
-1. The restful APIs will reject the values in the blacklist
+1. The restful APIs will reject the values in the denyList
 1. Ohara UI disable user to input the illegal words
 
-Currently, blacklist is used by Array type only.
+Currently, denyList is used by Array type only.
 
 ## Recommended values
 

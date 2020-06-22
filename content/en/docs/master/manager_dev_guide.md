@@ -143,7 +143,7 @@ You can run **Client** unit test with a single npm script:
 $ yarn test
 ```
 
-Please note that this is a one-off run command, often when you\'re in
+Please note that this is a one-off run command, often when you're in
 the development, you would run test and stay in Jest's watch mode
 which reloads the test once you save your changes:
 
@@ -171,7 +171,7 @@ your test manually through the UI.
 $ yarn test:api:open
 ```
 
-**Electron mode(headless)**: since we\'re running our API test on CI
+**Electron mode(headless)**: since we're running our API test on CI
 under this mode. You might often want to run your tests in this mode
 locally as well.
 
@@ -194,7 +194,7 @@ your test manually through the UI.
 $ yarn test:e2e:open
 ```
 
-**Electron mode(headless)**: since we\'re running our E2E test on CI
+**Electron mode(headless)**: since we're running our E2E test on CI
 under this mode. You might often want to run your tests in this mode
 locally as well.
 
@@ -332,7 +332,7 @@ Unit test:
 $ ./gradlew test
 ```
 
-- Run **Client**\'s unit tests. The test reports can be found in `ohara-manager/test-reports/`
+- Run **Client**'s unit tests. The test reports can be found in `ohara-manager/test-reports/`
 
 API test:
 
@@ -378,7 +378,7 @@ This is useful when you want to kill all node.js processes locally
 
 ### Prepush
 
-We also provide a npm script to run Client\'s unit test, linting, and
+We also provide a npm script to run Client's unit test, linting, and
 format all the JavaScript files with. **Ideally, you'd run this
 before pushing your code to the remote repo:**
 
@@ -419,20 +419,20 @@ Recommended vscode settings
 
 **Recommend extensions**
 
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) - install this so vscode can display linting errors right in the
-  editor
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) --- 
+  install this so vscode can display linting errors right in the editor
 
-- [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components) - syntax highlighting support for [styled
-  component](https://github.com/styled-components/styled-components)
+- [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components) --- 
+  syntax highlighting support for [styled component](https://github.com/styled-components/styled-components)
 
-- [Prettier - Code
-  formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) -
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) ---
   code formatter, it consumes the config in `.prettierrc`
 
-- [DotENV](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv) - `.env` file syntax highlighting support
+- [DotENV](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv) --- 
+  `.env` file syntax highlighting support
 
-- [Color
-  Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight) - Highlight web colors in VSCode
+- [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight) --- 
+  Highlight web colors in VSCode
 
 ## Switch different version of Node.js
 
@@ -488,13 +488,13 @@ For more info, you can read the [docs](https://github.com/tj/n) here.
 
 - **Node.js processes cannot be stopped even after using kill -9**
 
-We're using `forever` to start our node.js servers on CI, and
-`nodemon` while in development, so you need to use the following
-commands to kill them. `kill -9` or `fuser` might not work as you
-expected.
-
-use `yarn clean:processes` command or `pkill node` to kill all the
-node.js processes
+  We're using `forever` to start our node.js servers on CI, and
+  `nodemon` while in development, so you need to use the following
+  commands to kill them. `kill -9` or `fuser` might not work as you
+  expected.
+  
+  use `yarn clean:processes` command or `pkill node` to kill all the
+  node.js processes
 
 - **While running test in jest's watch modal, an error is thrown**
 

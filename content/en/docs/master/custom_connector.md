@@ -14,8 +14,6 @@ oharaVersion: 0.10.0
 oharaCode: https://github.com/oharastream/ohara/tree/master
 ---
 
-:construction: Under construction :construction:
-
 Ohara custom connector is based on 
 [kafka connector](https://docs.confluent.io/current/connect/managing/index.html).
 It offers a platform that enables you to define some simple actions to
@@ -25,10 +23,10 @@ you have to do is to write your custom connector, which can have only
 the pull()/push() method, and then compile your code to a jar file.
 After uploading your jar to Ohara, you are able to **deploy** your
 connector on the
-`worker cluster <rest-workers-create>`{.interpreted-text role="ref"}. By
+[worker cluster]{{< relref "workers.md#rest-workers-create" >}}. By
 leveraging Ohara connector framework, apart from the availability,
 scalability, and durability, you can also monitor your connector for
-`logs <rest-logs>`{.interpreted-text role="ref"} and
+[logs]({{< relref "rest-api/logs.md" >}}) and
 [metrics]({{< relref "#metrics" >}}).
 
 The following sections start to explain how to write a good connector on
@@ -152,9 +150,9 @@ setting** to generate the output. The **cell setting** in Ohara is
 called **column**. It shows the metadata of a **cell**. The metadata
 consists of:
 
-1. origin column name (**string**) - you can match the cell by this name
-2. new column name - the new name of output.
-3. type (**DataType**) - the type of output value. Whatever the
+1. origin column name (**string**) --- you can match the cell by this name
+2. new column name --- the new name of output.
+3. type (**DataType**) --- the type of output value. Whatever the
    origin type of value, you should convert the value according this
    type. Don't worry the casting error. It is up to the user who pass
    the wrong configuration.
@@ -168,7 +166,7 @@ consists of:
    - bytes
    - serializable object
    - row
-4. order (**int**) - the order of cells in output.
+4. order (**int**) --- the order of cells in output.
 
 An example of converting data according to columns.
 
@@ -219,7 +217,7 @@ empty. Throwing exception is better than generating corrupt data!
 
 Source connector is used to pull data from outside system and then push
 processed data to Ohara topics. A basic implementation for a source
-connector only includes four methods - **run**, **terminate**,
+connector only includes four methods --- **run**, **terminate**,
 **taskClass**, and **taskSetting**
 
 ```java
@@ -262,8 +260,8 @@ user. If you (connector developer) are a good friend of your connector
 user, you can get (and cast it to expected type) config, which is
 passed by connector user, from **TaskSetting**. For example, a
 connector user calls
-`Connector API <rest-connectors-create-settings>`{.interpreted-text
-role="ref"} to store a config k0-v0 (both of them are string type) for
+[Connector API]({{< relref "rest-api/connectors.md#create-settings" >}}) 
+to store a config k0-v0 (both of them are string type) for
 your connector, and then you can get v0 via
 TaskSetting.stringValue("k0").
 
@@ -285,8 +283,8 @@ fighting against wrong configs (have a great time with your family)
 ### terminate() {#source-terminate}
 
 This method is invoked by calling
-`STOP API <rest-stop-stream>`{.interpreted-text role="ref"}. You can
-release the resources allocated by connector, or send a email to shout
+[STOP API]({{< relref "rest-api/connectors.md#stop" >}}). You can
+release the resources allocated by connector, or email to shout
 at someone. It is ok to throw an exception when you fails to **stop**
 the connector. Worker cluster will mark **failure** on the connector,
 and the world keeps running.
@@ -304,12 +302,12 @@ between them (for example, make them to access a global variable).
 
 Connector has to generate configs for each task. The value of
 **maxTasks** is configured by
-`Connector API <rest-connectors>`{.interpreted-text role="ref"}. If
+[Connector API]({{< relref "connectors.md" >}}). If
 you prefer to make all tasks do identical job, you can just clone the
 task config passe by [start]({{< relref "#source-start" >}}). Or you
 can prepare different configs for each task. Noted that the number of
 configuration you return MUST be equal with input value - maxTasks.
-Otherwise, you will get a exception when running your connector.
+Otherwise, you will get an exception when running your connector.
 
 
 {{% alert hint %}}
@@ -351,7 +349,7 @@ public abstract class RowSourceTask extends SourceTask {
 
 RowSourceTask is the unit of executing **poll**. A connector can invoke
 multiple tasks if you set **tasks.max** be bigger than 1 via
-`Connector API <rest-connectors>`{.interpreted-text role="ref"}.
+[Connector API]({{< relref "connectors.md" >}}).
 RowSourceTask has the similar lifecycle to Source connector. Worker cluster
 call **start** to initialize a task and call **stop** to terminate a
 task.
@@ -430,8 +428,8 @@ them in **RowSourceRecord**.
 ```java
 public class ExampleOfPartitionAndOffset {
     public static RowSourceRecord addPartitionAndOffset(RowSourceRecord.Builder builder, String fileName, int offset) {
-        Map<String, String> partition = Collections.singletonMap("fileName", fileName);
-        Map<String, Integer> offset = Collections.singletonMap("offset", 1);
+        Map<String, String> partition = Map.of("fileName", fileName);
+        Map<String, Integer> offset = Map.of("offset", 1);
         return builder.sourcePartition(partition)
         .sourceOffset(offset)
         .build();
@@ -662,7 +660,7 @@ public interface RowSinkContext {
    * @param offset the offset to reset to.
    */
   default void offset(TopicPartition partition, Long offset) {
-    this.offset(Collections.singletonMap(partition, offset));
+    this.offset(Map.of(partition, offset));
   }
 }
 ```
@@ -733,12 +731,11 @@ public abstract class RowSourceConnector extends SourceConnector {
 
 The default value is version of build. You can override one of them or
 all of them when writing connector. The version information of a
-connector is showed by `Worker APIs <rest-workers>`{.interpreted-text
-role="ref"}.
+connector is showed by [Worker APIs]({{< relref "workers.md" >}}).
 
-  {{% alert warning %}}
-  Don't return **null**, please!!!
-  {{% /alert %}}
+{{% alert warning %}}
+Don't return **null**, please!!!
+{{% /alert %}}
 
 Version in Ohara connector is different to kafka connector. The later
 only supports **version** and it's APIs show only **version**. Hence,
@@ -753,19 +750,18 @@ We are live in a world filled with number, and so do connectors. While a
 connector is running, Ohara collects many counts from the data flow for
 the connector in background. All of counters (and other records which
 will be introduced in the future) are called **metrics**, and it can be
-fetched by `Connector API <rest-connectors>`{.interpreted-text
-role="ref"}. Apart from official metrics, connector developers are also
+fetched by [Connector API]({{< relref "connectors.md" >}}). 
+Apart from official metrics, connector developers are also
 able to build custom metrics for custom connectors, and all custom
-metrics are also showed by
-`Connector API <rest-connectors>`{.interpreted-text role="ref"}.
+metrics are also showed by [Connector API]({{< relref "connectors.md" >}}).
 
 Ohara leverage JMX to offer the metrics APIs to connector. It means all
 metrics you created are stored as Java beans and is accessible through
 JMX service. That is why you have to define a port via
-`Worker APIs <rest-workers>`{.interpreted-text role="ref"} for creating
+[Worker APIs]({{< relref "rest-api/workers.md" >}}) for creating
 a worker cluster. Although you can see all java mbeans via the JMX
 client (such as JMC), Ohara still encourage you to apply
-`Connector API <rest-connectors>`{.interpreted-text role="ref"} as it
+[Connector API]({{< relref "rest-api/connectors.md" >}}) as it
 offers a more readable format of metrics.
 
 ### Counter {#counter}
@@ -774,12 +770,12 @@ Counter is a common use case for metrics that you can
 increment/decrement/add/ a number atomically. A counter consists of
 following members.
 
-1. group (**string**) - the group of this counter
-2. name (**string**) - the name of this counter
-3. unit (**string**) - the unit of value
-4. document (**string**) - the document for this metrics
-5. startTime (**long**) - the time to start this counter
-6. value (**long**) - current value of count
+1. group (**string**) --- the group of this counter
+2. name (**string**) --- the name of this counter
+3. unit (**string**) --- the unit of value
+4. document (**string**) --- the document for this metrics
+5. startTime (**long**) --- the time to start this counter
+6. value (**long**) --- current value of count
 
 A example of creating a counter is shown below.
 
@@ -807,7 +803,7 @@ your counter.
 {{% alert hint %}}
 The counter created by connector always has the group same to id of
 connector, since Ohara needs to find the counters for specific connector
-in `Connector API <rest-connectors>`{.interpreted-text role="ref"}
+in [Connector API]({{< relref "connectors.md" >}})
 {{% /alert %}}
 
 ### Official Metrics
@@ -842,7 +838,7 @@ public class ExampleOfCreatingCustomBuilder {
 {{% alert hint %}}
 Ohara doesn't obstruct you from using Counter directly. However, using
 CounterBuilder make sure that your custom metrics are available in
-`Connector API <rest-connectors>`{.interpreted-text role="ref"}.
+[Connector API]({{< relref "connectors.md" >}}).
 {{% /alert %}}
 
 ------------------------------------------------------------------------
@@ -884,7 +880,7 @@ public abstract class CsvSinkConnector extends RowSinkConnector {
    * @return The SettingDef for this connector.
    */
   protected List<SettingDef> customSettingDefinitions() {
-    return Collections.emptyList();
+    return List.of();
   }
 }
 ```
@@ -988,7 +984,7 @@ public interface Storage extends Releasable {
 
 {{% alert hint %}}
 You can read the
-[FtpStorage]({{< param oharaCode >}}/ohara-connector/src/main/scala/oharastream/ohara/connector/ftp/FtpStorage.scala) as an example to see how to implement your own
-Storage.
+[FtpStorage]({{< param oharaCode >}}/ohara-connector/src/main/scala/oharastream/ohara/connector/ftp/FtpStorage.scala) 
+as an example to see how to implement your own Storage.
 {{% /alert %}}
 

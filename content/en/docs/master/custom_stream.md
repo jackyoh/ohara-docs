@@ -14,8 +14,6 @@ oharaVersion: 0.10.0
 oharaCode: https://github.com/oharastream/ohara/tree/master
 ---
 
-:construction: Under construction :construction:
-
 Ohara stream is an unparalleled wrap of [kafka streams](https://kafka.apache.org/documentation/streams) which gives you
 a straightforward thought to design your streaming flow. It offers a
 simple way to implement and define actions to process data between
@@ -113,7 +111,7 @@ in stream. The details of streamSetting are list
 [here]({{< relref "#setting-definitions" >}}).
 
 In the following example, we want to add a custom definition which is
-used to define \"join topic\":
+used to define "join topic":
 
 ```java
 @Override
@@ -151,10 +149,10 @@ We provide two arguments in this method:
     from the definition you can use _StreamDefinitions.string()_ to get the value from the
     [config method]({{< relref "#config-method" >}}).
 
-  {{% alert hint %}}
-  The return value is wrap in a Java object **Optional**, you need to
-  decide whether the value is present or not.
-  {{% /alert %}}
+{{% alert hint %}}
+The return value is wrap in a Java object **Optional**, you need to
+decide whether the value is present or not.
+{{% /alert %}}
 
 For example:
 
@@ -173,9 +171,9 @@ public void start(OStream<Row> ostream, StreamDefinitions streamSetting) {
 The above code does the following transformations:
 
 1.  pick cell of the header: `name`, `age` from each row
-2.  filter out that if `filterName` is null
-    - here we get the value from **filterName** of definitions. the value you should update by
-      `Stream update api <rest-stream-update-information>`{.interpreted-text role="ref"}
+2.  filter out that if `filterName` is null --- 
+    here we get the value from **filterName** of definitions. the value you should update by
+    [Stream update api]({{< relref "streams.md#update" >}})
       
     PUT /v0/streams/XXX
 
@@ -326,7 +324,7 @@ Any group category will generate a new "tab" in Ohara-Manager.
 
 The value of each definition will be kept in environment of stream
 running container, and you should set the value by
-`stream api <rest-stream-update-information>`{.interpreted-text role="ref"}.
+[stream api]({{< relref "rest-api/streams.md#update" >}}).
 
 ------------------------------------------------------------------------
 
@@ -337,16 +335,16 @@ metrics data from the stream in the background. The metrics data here
 means [official metrics]({{< relref "#official-metrics" >}}) which contains
 [Counters]({{< relref "custom_connector.md#counter" >}}) for now
 (other type of metrics will be introduced in the future). The metrics
-data could be fetched by `Stream APIs<rest-stream>`{.interpreted-text
-role="ref"}. Developers will be able to implement their own custom
+data could be fetched by [Stream APIs]({{< relref "rest-api/streams.md" >}}). 
+Developers will be able to implement their own custom
 metrics in the foreseeable future.
 
 Ohara leverages JMX to offer the metrics data to stream. It means that
 all metrics you have created are stored as Java beans and accessible
 through JMX service. The stream will expose a port via
-`Stream APIs<rest-stream>`{.interpreted-text role="ref"} for other JMX
+[Stream APIs]({{< relref "streams.md" >}}) for other JMX
 client tool used, such as JMC, but we still encourage you to use
-`Stream APIs<rest-stream>`{.interpreted-text role="ref"} as it offers a
+[Stream APIs]({{< relref "streams.md" >}}) as it offers a
 more readable format of metrics.
 
 ### Official Metrics {#official-metrics}
@@ -357,8 +355,8 @@ records (counter) - produced topic records (counter)
 A normal stream will connect to two topics, one is the source topic that
 stream will consume from, and the other is the target topic that stream
 will produce to. We use prefix words (**TOPIC_IN**, **TOPIC_OUT**) in
-the response data (`Stream APIs<rest-stream>`{.interpreted-text
-role="ref"}) in order to improve readabilities of those types. You don't
+the response data ([Stream APIs][Stream APIs]({{< relref "streams.md" >}})) 
+in order to improve readabilities of those types. You don't
 need to worry about the implementation of these official metrics, but
 you can still read the
 [source code]({{< param oharaCode >}}/ohara-stream/src/main/java/oharastream/ohara/stream/metric/MetricFactory.java)

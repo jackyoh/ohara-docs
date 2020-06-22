@@ -1,7 +1,7 @@
 +++
 widget = "blank"  # See https://sourcethemes.com/academic/docs/page-builder/
 headless = true  # This file represents a page section.
-active = false  # Activate this widget? true/false
+active = true  # Activate this widget? true/false
 weight = 1  # Order that this section will appear.
 
 [design]
@@ -17,4 +17,4 @@ weight = 1  # Order that this section will appear.
   padding = ["20px", "0", "0px", "0"]
 +++
 
-:construction: Under construction :construction:
+:construction: 施工中 :construction:

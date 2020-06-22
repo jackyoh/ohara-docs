@@ -51,7 +51,7 @@ title = "OharaStream"
 #  label = '<a class="js-github-release" href="https://github.com/oharastream/ohara/updates" data-repo="oharastream/ohara">Latest release<!-- V --></a>'
 +++
 
-[中文]Ohara is an scalable streaming platform, that allows users to easily organized their input, output, and streaming applications with an clean and comprehensive GUI.
+Ohara is a scalable streaming platform, that allows users to easily organized their input, output, and streaming applications with an clean and comprehensive GUI.
 
 <span style="text-shadow: none;">
   <a class="github-button" href="https://github.com/oharastream/ohara" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star this on GitHub">Star</a>
