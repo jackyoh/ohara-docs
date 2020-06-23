@@ -27,7 +27,7 @@ You can learn more from [Using Quickstart VM]({{< relref "quickstart/quickstartv
 
 ## For Developer
 
-If you want to know how to build ohara, please read: [How to build Ohara]({{< relref "howtobuild/build-ohara.md" >}})
+If you want to know how to build ohara, please read: [How to build Ohara]({{< relref "build/build-ohara.md" >}})
 
 Apart from contributing code to ohara, you can also leverage ohara to design your
 [custom connector]({{< relref "custom_connector.md" >}}), [custom stream]({{< relref "custom_stream.md" >}})

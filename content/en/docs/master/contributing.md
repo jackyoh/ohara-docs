@@ -22,7 +22,7 @@ before submitting a PR.
 ## Quick start
 
 - Fork and clone the [oharastream/ohara](https://github.com/oharastream/ohara) repo
-- Install dependencies. See our [how_to_build_Ohara]({{< relref "howtobuild/build-ohara.md" >}}) for 
+- Install dependencies. See our [how_to_build_Ohara]({{< relref "build/build-ohara.md" >}}) for 
   development machine setup
 - Create a branch with your PR with:  
   `git checkout -b ${your-branch-name}`
@@ -68,7 +68,7 @@ The QA build status can be seen at the bottom of your PR.
 - Pass all tests
 - Your PR should not make ohara unstable, if it does. It should be reverted ASAP.
 - You can either run these tests on your local 
-  (see our [how_to_build_Ohara]({{< relref "howtobuild/build-ohara.md" >}}) for more 
+  (see our [how_to_build_Ohara]({{< relref "build/build-ohara.md" >}}) for more 
   info on how to run tests) or by opening the PR on our repo. These tests will be running 
   on your CI server.
 - Pass code style check. You can automatically fix these issues with a

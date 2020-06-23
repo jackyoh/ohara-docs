@@ -82,7 +82,7 @@ and link to [http://localhost:5050/](http://localhost:5050/)
 
 We all love docker, right? All Ohara services are executed by docker
 container. However, it is ok to run Ohara services through
-[assembly file]({{< ref "howtobuild/build-ohara.md#build-binary" >}}) if you
+[assembly file]({{< ref "build/build-ohara.md#build-binary" >}}) if you
 really really really hate docker.
 
 ### Network Configurations
@@ -597,11 +597,11 @@ All services host by Ohara are based on docker containers, such as
 [Zookeeper]({{< relref "#zookeeper" >}}),
 [Broker]({{< relref "#broker" >}}) and [Worker]({{< relref "#worker" >}}). 
 You should install suggested version of Docker before enjoying Ohara service 
-(see [how to build]({{< relref "howtobuild/build-ohara.md" >}}) for prerequisite).
+(see [how to build]({{< relref "build/build-ohara.md" >}}) for prerequisite).
 
 The post-installation for all docker nodes are listed below.
 
-1. [Install the supported version of docker]({{< relref "howtobuild/build-ohara.md#prerequisites" >}}) - 
+1. [Install the supported version of docker]({{< relref "build/build-ohara.md#prerequisites" >}}) - 
    Ohara community does not support the legacy docker.
 2. [download all ohara images]({{< relref "#download-images" >}}) - 
    Ohara Configurator expect all images are available from local disk rather than network.
