@@ -272,11 +272,11 @@ Below we provide some examples that demonstrate how to develop your own
 stream applications. More description of each example could be found in
 javadoc.
 
-- [WordCount]({{< ohara-file "ohara-stream/src/test/java/oharastream/ohara/stream/examples/WordCountExample.java" >}}):
+- [WordCount]({{< ohara-file "/ohara-stream/src/test/java/oharastream/ohara/stream/examples/WordCountExample.java" >}}):
   count the words in "word" column
-- [PageViewRegion]({{< ohara-file "ohara-stream/src/test/java/oharastream/ohara/stream/examples/PageViewRegionExample.java" >}}: 
+- [PageViewRegion]({{< ohara-file "/ohara-stream/src/test/java/oharastream/ohara/stream/examples/PageViewRegionExample.java" >}}): 
   count the views by each region
-- [Sum]({{< ohara-file "ohara-stream/src/test/java/oharastream/ohara/stream/examples/SumExample.java" >}}: 
+- [Sum]({{< ohara-file "/ohara-stream/src/test/java/oharastream/ohara/stream/examples/SumExample.java" >}}): 
   sum odd numbers in "number" column
 
 ------------------------------------------------------------------------
@@ -361,7 +361,7 @@ the response data ([Stream APIs]({{< relref "streams.md" >}}))
 in order to improve readabilities of those types. You don't
 need to worry about the implementation of these official metrics, but
 you can still read the
-[source code]({{< ohara-file "ohara-stream/src/main/java/oharastream/ohara/stream/metric/MetricFactory.java" >}})
+[source code]({{< ohara-file "/ohara-stream/src/main/java/oharastream/ohara/stream/metric/MetricFactory.java" >}})
 to see how Ohara creates official metrics.
 
 ------------------------------------------------------------------------

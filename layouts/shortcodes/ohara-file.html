@@ -1,5 +1,5 @@
 {{/*
-  Usage: {{< ohara-file "$RelativeFilePath" >}}
+  Usage: {{< ohara-file "$FilePath" >}}
   Description:
     * 若檔案在 /content/$LangID/docs/$branch/ 資料夾內, 依據不同的 branch folder, 提供對應的 Ohara repo 檔案連結.
     * 不在 /content/$LangID/docs/$branch/ 之內, 則固定以 master branch 為主.
@@ -13,4 +13,4 @@
 {{- if eq (index $segments 2) "docs"}}
   {{- $branch = index $segments 3 }}
 {{- end -}}
-https://github.com/oharastream/ohara/blob/{{ $branch }}/{{ .Get 0 }}
+https://github.com/oharastream/ohara/blob/{{ $branch }}{{ .Get 0 }}

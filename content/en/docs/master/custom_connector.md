@@ -138,7 +138,7 @@ for following data types:
 
 {{% alert hint %}}
 The default serializer is located at
-[Here]({{< ohara-file "ohara-common/src/main/java/oharastream/ohara/common/data/Serializer.java" >}})
+[Here]({{< ohara-file "/ohara-common/src/main/java/oharastream/ohara/common/data/Serializer.java" >}})
 {{% /alert %}}
 
 
@@ -981,7 +981,7 @@ public interface Storage extends Releasable {
 
 {{% alert hint %}}
 You can read the
-[FtpStorage]({{< ohara-file "ohara-connector/src/main/scala/oharastream/ohara/connector/ftp/FtpStorage.scala" >}}) 
+[FtpStorage]({{< ohara-file "/ohara-connector/src/main/scala/oharastream/ohara/connector/ftp/FtpStorage.scala" >}}) 
 as an example to see how to implement your own Storage.
 {{% /alert %}}
 

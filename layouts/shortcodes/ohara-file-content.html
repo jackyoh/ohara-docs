@@ -1,0 +1,14 @@
+{{/*
+  Reference: https://github.com/haideralipunjabi/hugo-shortcodes/tree/master/github
+*/}}
+{{- $branch := "master" }}
+{{- $path := (urls.Parse .Page.Permalink).Path }}
+{{- $segments := split $path "/" }}
+{{- if eq (index $segments 2) "docs"}}
+  {{- $branch = index $segments 3 }}
+{{- end -}}
+
+{{- $url := print "https://api.github.com/repos/oharastream/ohara/contents/"  (.Get "file") }}
+{{- $dataJ := getJSON $url "?ref=" $branch  }}
+{{- $con := base64Decode $dataJ.content }}
+{{- highlight $con (.Get "lang") (.Get "options") }}
