@@ -1,1 +1,25 @@
-0.11.0-SNAPSHOT
+{{/*
+  Description: 根據 branch name 傳出對應的 version.
+    * 檔案須在 /content/$LangID/docs/$branch/ 才有效, 不在則視為 master branch
+    * 在 /content/$LangID/docs/$branch/ 範圍內, 卻找不到定義則丟出錯誤.
+*/}}
+
+{{- $path := (urls.Parse .Page.Permalink).Path }}
+{{- $segments := split $path "/" }}
+
+{{- $branch := "master" }}
+{{- $version := "0.11.0-SNAPSHOT" }}
+
+{{- if eq (index $segments 2) "docs" }}
+  {{- $branch = index $segments 3 }}
+  {{- if eq $branch "master" }}
+  {{- else if eq $branch "0.10.x" }}
+    {{- $version = "0.10.0" }}
+  {{- else if eq $branch "0.11.x" }}
+    {{- $version = "0.11.0-SNAPSHOT" }}
+  {{- else }}
+    {{- errorf "shortcode `ohara-version` cannot find the version of branch `%s`" $branch }}
+  {{- end }}
+{{- end }}
+
+{{- $version }}
