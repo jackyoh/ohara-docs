@@ -121,7 +121,7 @@ topics.
 
 We only support one topic for current version. We will throw
 exception in start api if you assign more than 1 topic. We will
-support multiple topics on issue [#688]({{< url-ohara-issue 688 >}})
+support multiple topics on issue [#688]({{< ohara-issue 688 >}})
 
 {{% /alert %}}
 
@@ -134,7 +134,7 @@ topics.
 
 We only support one topic for current version. We will throw
 exception in start api if you assign more than 1 topic. We will
-support multiple topics on issue [#688]({{< url-ohara-issue 688 >}})
+support multiple topics on issue [#688]({{< ohara-issue 688 >}})
 {{% /alert %}}
 
 * Example Request
@@ -353,7 +353,7 @@ topics.
 
 we only support one topic for current version. We will throw
 exception in start api if you assign more than 1 topic. We will
-support multiple topics on issue [#688]({{< url-ohara-issue 688 >}})
+support multiple topics on issue [#688]({{< ohara-issue 688 >}})
 {{% /alert %}}
 
 7. to (**option(array(string))**) --- target topic.
@@ -365,7 +365,7 @@ topics.
 
 we only support one topic for current version. We will throw
 exception in start api if you assign more than 1 topic. We will
-support multiple topics on issue [#688]({{< url-ohara-issue 688 >}})
+support multiple topics on issue [#688]({{< ohara-issue 688 >}})
 {{% /alert %}}
 
 * Example Request

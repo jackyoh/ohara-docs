@@ -198,7 +198,7 @@ folder. Otherwise, Ohara Configurator flush all data to a random folder.
 **How to solve the start configurator container permission denied issue?**
 
 1. You must confirm your host username is the ohara and UID is 1000.
-   Please refer to issue [#2573]({{< url-ohara-issue 2573 >}})
+   Please refer to issue [#2573]({{< ohara-issue 2573 >}})
 2. Please confirm the **/tmp/configurator** host path owner is ohara user
    and have to write permission.
 

@@ -1,0 +1,14 @@
+{{/*
+  Usage: {{< branch >}}
+  Description:
+    * 在 /content/$LangID/docs/$branch/ 資料夾內, 傳回 $branch
+    * 若不在 /content/$LangID/docs/$branch/ 之內, 則丟出錯誤
+*/}}
+
+{{- $path := (urls.Parse .Page.Permalink).Path }}
+{{- $segments := split $path "/" }}
+{{- if eq (index $segments 2) "docs"}}
+  {{- index $segments 3 }}
+{{- else }}
+  {{- errorf "shortcode `branch` only available under `/docs/$branch` folder" }}
+{{- end }}
