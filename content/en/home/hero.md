@@ -43,7 +43,7 @@ title = "OharaStream"
   icon = "download"
   
 [cta_alt]
-  url = "https://oharastream.github.io/en/docs/"
+  url = "https://oharastream.github.io/en/docs/master/"
   label = "View Documentation"
 
 # Note. An optional note to show underneath the links.
