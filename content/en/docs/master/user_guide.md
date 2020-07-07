@@ -55,7 +55,7 @@ The core component of Ohara is [Configurator]({{< relref "#configurator" >}}). A
 [related tools]({{< relref "#installation" >}}), you can set up a Configurator via following docker command.
 
 ```console
-$ docker run --rm -p 12345:12345 oharastream/configurator:{{< ohara-version >}} --port 12345
+$ docker run --rm -p 12345:12345 oharastream/configurator:{{< ohara-version >}} --port 12345 --hostname ${host}
 ```
 
 {{% alert hint %}}
@@ -186,6 +186,7 @@ $ docker run -v /tmp/configurator:/home/ohara/configurator \
          -p 12345:12345 \
          oharastream/configurator:{{< ohara-version >}} \
          --port 12345 \
+         --hostname ${host} \
          --folder /home/ohara/configurator
 ```
 
