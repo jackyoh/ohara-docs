@@ -35,7 +35,7 @@ as Ohara manager client.
 Make sure you have `watchman` installed on your machine. You can do this
 with homebrew:
 
-```sh
+```shell script
 $ brew install watchman
 ```
 
@@ -43,7 +43,7 @@ $ brew install watchman
 
 Install these dependencies for cypress:
 
-```sh
+```shell script
 $ yum install -y xorg-x11-server-Xvfb gtk2-2.24* libXtst* libXScrnSaver* GConf2* alsa-lib*
 ```
 
@@ -59,7 +59,7 @@ the [Initial machine setup](#initial-machine-setup) section above 👆
 
 Make sure you're at the Ohara manager root, then start it with:
 
-```sh
+```shell script
 $ yarn start --configurator ${http://host:port/v0}
 ```
 
@@ -70,7 +70,7 @@ up a Configurator
 
 Open another terminal tab, and start the **Client**:
 
-```sh
+```shell script
 $ yarn start:client
 ```
 
@@ -87,7 +87,7 @@ the instructions below:
 
 Make sure you're at the ohara-manager root:
 
-```sh
+```shell script
 $ yarn start --configurator ${http://host:port/v0}
 ```
 
@@ -99,7 +99,7 @@ in Ohara configurator API URL.
 You can also override the default port `5050` by passing in `--port`
 like the following:
 
-```sh
+```shell script
 $ yarn start --configurator ${http://host:port/v0} --port ${1234}
 ```
 
@@ -117,7 +117,7 @@ contain the API version number: `/v0`
 
 Start the **Client** development server with:
 
-```sh
+```shell script
 $ yarn start:client
 ```
 
@@ -127,7 +127,7 @@ browser and start you development.
 You can override the default port `3000` by passing in an environment
 variable:
 
-```sh
+```shell script
 $ PORT=7777 yarn start:client
 ```
 
@@ -139,24 +139,29 @@ The dev server will then start at `http://localhost:7777`
 
 You can run **Client** unit test with a single npm script:
 
-```sh
-$ yarn test
+```shell script
+$ yarn test:unit:ci
 ```
 
 Please note that this is a one-off run command, often when you're in
 the development, you would run test and stay in Jest's watch mode
 which reloads the test once you save your changes:
 
-```sh
-$ yarn test:watch
+```shell script
+$ yarn test:unit:watch
 ```
 
-Generate test coverage reports, the coverage reports can be found in
-`ohara-manager/client/coverage/`
-
-```sh
-$ yarn test:coverage
+```shell script
+$ yarn test:unit:ci
 ```
+
+This command will generate test coverage reports, which can be found in
+`ohara-manager/client/coverage/ut/`
+
+{{% alert note %}}
+We will automate check the threshold of code coverage by
+**Statements > 40%** if you issued the `test:unit:ci` command.
+{{% /alert %}}
 
 #### API test
 
@@ -167,7 +172,7 @@ API is always compatible with Ohara manager and won't break our UI
 **GUI mode**: this will open Cypress test runner, you can then run
 your test manually through the UI.
 
-```sh
+```shell script
 $ yarn test:api:open
 ```
 
@@ -175,12 +180,47 @@ $ yarn test:api:open
 under this mode. You might often want to run your tests in this mode
 locally as well.
 
-```sh
+```shell script
 $ yarn test:api:ci --configurator ${http://host:port/v0 --port 0}
 ```
 
-> 1. Our API test can **ONLY** be running in fake mode Configurator.
-> 2. The `--port 0` means randomly choose a port for this test run
+> 1. Generated test coverage reports could be found in `ohara-manager/client/coverage/api`
+if you executed test with **Electron mode**.
+> 2. The `--port 0` means randomly choose a port for this test run.
+
+{{% alert note %}}
+We will automate check the threshold of code coverage by
+**Statements > 80%** if you issued the `test:api:ci` command.
+{{% /alert %}}
+
+#### IT test
+
+To test our UI flows, we use Cypress to test our UI flow with **fake** configurator. These 
+tests focus on the behaviors of UI flow (by different operations from UI), so they should 
+cover most of our UI logic.  You can run the test in different modes:
+                            
+**GUI mode**: this will open Cypress test runner, you can then run
+your test manually through the UI.
+
+```shell script
+$ yarn test:it:open
+```
+
+**Electron mode(headless)**: since we're running our API test on CI
+under this mode. You might often want to run your tests in this mode
+locally as well.
+
+```shell script
+$ yarn test:it:ci --configurator ${http://host:port/v0 --port 0}
+```
+
+This command will generate test coverage reports, which can be found in
+`ohara-manager/client/coverage/it/`
+
+{{% alert note %}}
+We will automate check the threshold of code coverage by
+**Statements > 75%** if you issued the `test:it:ci` command.
+{{% /alert %}}
 
 #### End-to-End test
 
@@ -190,7 +230,7 @@ modes:
 **GUI mode**: this will open Cypress test runner, you can then run
 your test manually through the UI.
 
-```sh
+```shell script
 $ yarn test:e2e:open
 ```
 
@@ -198,7 +238,7 @@ $ yarn test:e2e:open
 under this mode. You might often want to run your tests in this mode
 locally as well.
 
-```sh
+```shell script
 $ yarn test:e2e:ci --configurator ${http://host:port/v0}
 ```
 
@@ -222,6 +262,30 @@ $ yarn test:e2e:ci --configurator ${http://host:port/v0}
 
 3.  Unlike API test, the test should run in production environment
 
+### Code Coverage
+
+As the above test phases are tend to cover different range of our source code, after you executed 
+the following commands:
+- `yarn test:unit:ci`
+- `yarn test:api:ci`
+- `yarn test:it:ci`
+
+we will generate the corresponded coverage reports in relative path as each test section described, and 
+you could combine them to see the overall picture:
+
+```shell script
+$ yarn report:combined
+```
+
+The combined coverage report could be found at `/ohara-manager/client/coverage/index.html`
+
+{{% alert info %}}
+You could also check the combined report by yourself:
+```shell script
+$ yarn test:coverage:check
+```
+{{% /alert %}}
+
 ### Linting
 
 We use [ESLint](https://github.com/eslint/eslint) to lint all the
@@ -229,14 +293,14 @@ JavaScript:
 
 Server:
 
-```sh
+```shell script
 $ yarn lint:server
 ```
 
 It's usually helpful to run linting while developing and that's
 included in `yarn start` command:
 
-```sh
+```shell script
 $ yarn start --configurator ${http://host:port/v0}
 ```
 
@@ -261,7 +325,7 @@ take a look at the create-react-app
 We use [Prettier](https://github.com/prettier/prettier) to format our
 code. You can format all `.js` files with:
 
-```sh
+```shell script
 $ yarn format
 ```
 
@@ -275,7 +339,7 @@ $ yarn format
 You can get production-ready static files by using the following
 command:
 
-```sh
+```shell script
 $ yarn build
 ```
 
@@ -289,7 +353,7 @@ These static files will be built and put into the
 Run the following command to get the production ready build of both
 the **Server** and **Client**.
 
-```sh
+```shell script
 $ yarn setup
 ```
 
@@ -318,7 +382,7 @@ cause production build failed!**
 **From the Ohara manager project root**, use the following command to
 start the manager:
 
-```sh
+```shell script
 $ yarn start:prod --configurator ${http://host:port/v0}
 ```
 
@@ -328,7 +392,7 @@ In order to run tests on Jenkins, Ohara manager provides a few npm scripts that 
 
 Unit test:
 
-```sh
+```shell script
 $ ./gradlew test
 ```
 
@@ -336,13 +400,13 @@ $ ./gradlew test
 
 API test:
 
-```sh
+```shell script
 $ ./gradlew api -Pohara.manager.api.configurator=${http://host:port/v0}
 ```
 
 End-to-End test:
 
-```sh
+```shell script
 $ ./gradlew e2e -Pohara.manager.e2e.port=5050 -Pohara.manager.e2e.configurator=${http://host:port/v0}-Pohara.manager.e2e.nodeHost=${slaveNodeName} -Pohara.manager.e2e.nodePort=${slaveNodePort} -Pohara.manager.e2e.nodeUser=${slaveNodeUsername} -Pohara.manager.e2e.nodePass=${slaveNodePassword} -Pohara.it.container.prefix=${pullRequestNumber}
 ```
 
@@ -364,13 +428,13 @@ view them in `/ohara-manager/build.gradle`
 Clean up all running processes, removing `test-reports/` in the
 **Server** and `/build` directory in the **Client**:
 
-```sh
+```shell script
 $ yarn clean
 ```
 
 Clean all running processes started with node.js
 
-```sh
+```shell script
 $ yarn clean:process
 ```
 
@@ -382,7 +446,7 @@ We also provide a npm script to run Client's unit test, linting, and
 format all the JavaScript files with. **Ideally, you'd run this
 before pushing your code to the remote repo:**
 
-```sh
+```shell script
 $ yarn prepush
 ```
 
@@ -412,7 +476,7 @@ Recommended vscode settings
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
   "eslint.workingDirectories": [
-     "./client",
+     "./client"
    ]
 }
 ```
@@ -442,19 +506,19 @@ managing different version of Node.js on your machine:
 
 First, let's install this package `n`, note that we're installing it globally so it's can be used throughout your projects:
 
-```sh
+```shell script
 $ npm install -g n # or yarn global add n
 ```
 
 Second, let's use `n` to install a specific version of Node.js:
 
-```sh
+```shell script
 $ n 8.16.0
 ```
 
 Switch between installed NodeJS versions:
 
-```sh
+```shell script
 $ n # Yep, just type n in your terminal...,
 ```
 
@@ -469,7 +533,7 @@ For more info, you can read the [docs](https://github.com/tj/n) here.
   correctly installed on your machine. You can fix this by simply
   run:
 
-  ```sh
+  ```shell script
   $ yarn # If this doesn't work, try `yarn add ${module-name}`
   ```
 
@@ -482,7 +546,7 @@ For more info, you can read the [docs](https://github.com/tj/n) here.
   files Linux will watch. Read more
   [here](https://github.com/guard/listen/wiki/Increasing-the-amount-of-inotify-watchers#the-technical-details).
 
-  ```sh
+  ```shell script
   $ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p.
   ```
 
