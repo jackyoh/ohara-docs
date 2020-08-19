@@ -1,21 +1,21 @@
 ---
 title: Node
-linktitle: Node
+linktitle: Node API
 toc: true
 type: docs
 date: "2020-06-18T00:00:00+01:00"
 draft: false
 menu:
-  rest-api:
+  master:
     parent: REST APIs
     weight: 120
 ---
 
 Node is the basic unit of running service. It can be either physical
 machine or vm. In section
-[zookeeper]({{< relref "zookeepers.md" >}}),
-[Broker]({{< relref "brokers.md" >}}) and
-[Worker]({{< relref "workers.md" >}}), you will see many
+[zookeeper]({{< relref "./zookeepers.md" >}}),
+[Broker]({{< relref "./brokers.md" >}}) and
+[Worker]({{< relref "./workers.md" >}}), you will see many
 requests demanding you to fill the node name to build the services.
 Currently, Ohara requires the node added to Ohara should pre-install
 following services.

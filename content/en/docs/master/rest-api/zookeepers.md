@@ -1,12 +1,12 @@
 ---
 title: Zookeeper
-linktitle: Zookeeper
+linktitle: Zookeeper API
 toc: true
 type: docs
 date: "2020-06-18T00:00:00+01:00"
 draft: false
 menu:
-  rest-api:
+  master:
     parent: REST APIs
     weight: 200
 ---
@@ -255,7 +255,7 @@ up-to-date status
 
 Gracefully stopping a running zookeeper cluster. It is disallowed to
 stop a zookeeper cluster used by a running
-[broker cluster]({{< relref "brokers.md" >}}).
+[broker cluster]({{< relref "./brokers.md" >}}).
 
 *PUT /v0/zookeepers/$name/stop?group=$group[&force=true]*
 

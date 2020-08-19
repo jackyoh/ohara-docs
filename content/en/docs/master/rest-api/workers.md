@@ -1,12 +1,12 @@
 ---
 title: Worker
-linktitle: Worker
+linktitle: Worker API
 toc: true
 type: docs
 date: "2020-06-18T00:00:00+01:00"
 draft: false
 menu:
-  rest-api:
+  master:
     parent: REST APIs
     weight: 190
 ---
@@ -20,7 +20,7 @@ your worker cluster and you specify 6 tasks for your connector, the
 tasks of you connectors still be deployed on 3 nodes. That is to say,
 the connector can't get more resources to execute.
 
-Worker is based on [Broker]({{< relref "brokers.md" >}}), 
+Worker is based on [Broker]({{< relref "./brokers.md" >}}), 
 hence you have to create broker cluster first. Noted that a
 broker cluster can be used by multi worker clusters. BTW, worker cluster
 will pre-allocate a lot of topics on broker cluster, and the pre-created
@@ -73,7 +73,7 @@ Both forms are converted to `{"group": "default", "name": "n"}`
 
     You can require worker cluster to load the jars stored in ohara
     if you want to run custom connectors on the worker cluster. see
-    [Files APIs]({{< relref "files.md" >}}) for
+    [Files APIs]({{< relref "./files.md" >}}) for
     uploading jars to ohara. The files which are deployed to worker
     must be uber jars - it must include all dependencies exclude for
     ohara stuff.

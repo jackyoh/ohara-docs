@@ -65,7 +65,7 @@ $ yarn start --configurator ${http://host:port/v0}
 
 Note that the configurator option is **required**, and you should have
 configurator running before starting Ohara manager. You can see the
-[user guide]({{< relref "user_guide.md" >}}) on how to spin
+[user guide]({{< relref "./user_guide.md" >}}) on how to spin
 up a Configurator
 
 Open another terminal tab, and start the **Client**:

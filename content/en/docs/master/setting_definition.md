@@ -52,8 +52,8 @@ consists of following arguments.
       (it is legal to enter other values you prefer)
 
 {{% alert hint %}}
-You can call [Worker APIs]({{< relref "workers.md" >}})
-to get all connectors' setting definitions, and use [Stream APIs]({{< relref "streams.md" >}}) 
+You can call [Worker APIs]({{< relref "rest-api/workers.md" >}})
+to get all connectors' setting definitions, and use [Stream APIs]({{< relref "rest-api/streams.md" >}}) 
 to get all stream setting definitions.
 {{% /alert %}}
 
@@ -114,7 +114,7 @@ will display the following information.
 
 {{% alert hint %}}
 The default value will be added to
-[TaskSetting]({{< relref "custom_connector.md#source-start" >}})
+[TaskSetting]({{< relref "./custom_connector.md#source-start" >}})
 automatically if the specified key is not already associated with a value.
 {{% /alert %}}
 
@@ -124,7 +124,7 @@ automatically if the specified key is not already associated with a value.
 You can declare a **readonly** setting that not only exposes something
 of your application to user but also remind user the setting can't be
 changed at runtime. For instance, the information of
-[version]({{< relref "custom_connector.md#version" >}}) is fixed
+[version]({{< relref "./custom_connector.md#version" >}}) is fixed
 after you have completed your connector so it is not an **editable**
 setting. Hence, ohara define a setting for **version** with a readonly
 label. By the way, you should assign a default value to a readonly
@@ -513,7 +513,7 @@ support to Duration type so as to ease the pain of using string in
 connector. When you declare a setting with duration type, ohara provides
 the default check which casts input value to java Duration and scala
 Duration. Also, your connector can get the **Duration** from
-[TaskSetting]({{< relref "custom_connector.md#source-start" >}})
+[TaskSetting]({{< relref "./custom_connector.md#source-start" >}})
 easily without worrying about the conversion between java and scala.
 Furthermore, connector users can input both java.Duration and
 scala.Duration when starting connector.

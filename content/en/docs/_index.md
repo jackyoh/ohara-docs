@@ -1,5 +1,5 @@
 ---
-title: Document versions
+title: Ohara documents
 layout: docs  # Do not modify.
 
 # Note: Docs sidebar menu 在 menus.toml 
@@ -10,4 +10,3 @@ header:
   image: ""
 ---
 
-Document versions

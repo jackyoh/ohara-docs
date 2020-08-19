@@ -1,12 +1,12 @@
 ---
 title: Files
-linktitle: Files
+linktitle: Files API
 toc: true
 type: docs
 date: "2020-06-18T00:00:00+01:00"
 draft: false
 menu:
-  rest-api:
+  master:
     parent: REST APIs
     weight: 90
 ---
@@ -15,14 +15,14 @@ Ohara encourages user to write custom application if the official
 applications can satisfy requirements for your use case. Jar APIs is a
 useful entry of putting your jar on Ohara and then start related
 services with it. For example,
-[Worker APIs]({{< relref "workers.md#rest-workers-create" >}}) accept
+[Worker APIs]({{< relref "./workers.md#rest-workers-create" >}}) accept
 a **sharedJarKeys** element which can carry the jar name pointing to an
 existent jar in Ohara. The worker cluster will load all connectors of
 the input jar, and then you are able to use the connectors on the worker
 cluster.
 
 The File API upload jar file to use by the
-[Worker]({{< relref "workers.md" >}}) and [Stream]({{< relref "streams.md" >}}).
+[Worker]({{< relref "./workers.md" >}}) and [Stream]({{< relref "./streams.md" >}}).
 
 {{% alert hint %}}
 The file used by a worker or stream can't be either updated or deleted.

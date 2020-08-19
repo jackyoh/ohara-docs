@@ -1,12 +1,12 @@
 ---
 title: Pipeline
-linktitle: Pipeline
+linktitle: Pipeline API
 toc: true
 type: docs
 date: "2020-06-18T00:00:00+01:00"
 draft: false
 menu:
-  rest-api:
+  master:
     parent: REST APIs
     weight: 140
 ---
@@ -14,7 +14,7 @@ menu:
 Pipeline APIs are born of Ohara manager which needs a way to store the
 relationship of components in streaming. The relationship in pipeline is
 made up of multi **endpoints**. Each **endpoint** describe a component.
-For example, you have a [topic]({{< relref "topics.md" >}})
+For example, you have a [topic]({{< relref "./topics.md" >}})
 as source so you can describe the relationship via following
 endpoints.
 
@@ -57,13 +57,13 @@ Following information are written by Ohara.
    mentioned by pipeline
    - objects[i].name (**string**) --- object's name
    - objects[i].kind (**string**) --- the type of this object. for
-     instance, [topic]({{< relref "topics.md" >}}),
-     [connector]({{< relref "connectors.md" >}}), and
-     [stream]({{< relref "streams.md" >}})
+     instance, [topic]({{< relref "./topics.md" >}}),
+     [connector]({{< relref "./connectors.md" >}}), and
+     [stream]({{< relref "./streams.md" >}})
    - objects[i].className (**string**) --- object's implementation.
      Normally, it shows the full name of a java class
    - objects[i].state (**option(string)**) --- the state of object.
-     If the object can't have state (eg, [topic]({{< relref "topics.md" >}})), 
+     If the object can't have state (eg, [topic]({{< relref "./topics.md" >}})), 
      you won't see this field
    - objects[i].error (**option(string)**) --- the error message of
      this object
@@ -87,12 +87,12 @@ Following information are written by Ohara.
 *POST /v0/pipelines*
 
 The following example creates a pipeline with a
-[topic]({{< relref "topics.md" >}}) and [connector]({{< relref "connectors.md" >}}). 
-The [topic]({{< relref "topics.md" >}}) is created on [broker cluster]({{< relref "brokers.md" >}}) 
-but the [connector]({{< relref "connectors.md" >}}) isn't.
+[topic]({{< relref "./topics.md" >}}) and [connector]({{< relref "./connectors.md" >}}). 
+The [topic]({{< relref "./topics.md" >}}) is created on [broker cluster]({{< relref "./brokers.md" >}}) 
+but the [connector]({{< relref "./connectors.md" >}}) isn't.
 Hence, the response from server shows that it fails to find the status
-of the [connector]({{< relref "connectors.md" >}}). That
-is to say, it is ok to add un-running [connector]({{< relref "connectors.md" >}}) to pipeline.
+of the [connector]({{< relref "./connectors.md" >}}). That
+is to say, it is ok to add un-running [connector]({{< relref "./connectors.md" >}}) to pipeline.
 
 Allow setting the not exists object for the endpoint. The object
 resposne value is empty.

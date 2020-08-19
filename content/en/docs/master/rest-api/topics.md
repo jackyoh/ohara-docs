@@ -1,12 +1,12 @@
 ---
 title: Topic
-linktitle: Topic
+linktitle: Topic API
 toc: true
 type: docs
 date: "2020-06-18T00:00:00+01:00"
 draft: false
 menu:
-  rest-api:
+  master:
     parent: REST APIs
     weight: 170
 ---
@@ -37,7 +37,7 @@ topic are shown below.
   {{% alert note %}}
   1. The name must be unique in a broker cluster.
   2. There are many other available configs which are useful in
-     creating topic. Please ref [broker clusters]({{< relref "brokers.md" >}})
+     creating topic. Please ref [broker clusters]({{< relref "./brokers.md" >}})
      to see how to retrieve the available configs for specific broker
      cluster.
   {{% /alert %}}
@@ -77,7 +77,7 @@ The following information are tagged by Ohara.
    broker cluster actually 
 1. There are many other available configs which
    are useful in creating topic. Please ref
-   [broker clusters]({{< relref "brokers.md" >}}) to see
+   [broker clusters]({{< relref "./brokers.md" >}}) to see
    how to retrieve the available configs for specific broker cluster.
 {{% /alert %}}
 

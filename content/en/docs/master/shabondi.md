@@ -26,7 +26,7 @@ Following is a simple diagram of Pipeline to demonstrate about both the source a
 
 ## Data format
 
-Both Shabondi source and sink use [Row]({{< relref "custom_connector.md#datamodel" >}}) in JSON format 
+Both Shabondi source and sink use [Row]({{< relref "./custom_connector.md#datamodel" >}}) in JSON format 
 for data input and output. Row is a table structure data defined in Ohara code base. 
 A row is comprised of multiple cells. Each cell has its **name** and **value**. 
 Every row of your input data will be stored in the **Topic**.
@@ -87,7 +87,7 @@ requests and then writes to the connected **Topic**.
 
 #### Send Row
 
-Send a JSON data of [Row]({{< relref "custom_connector.md#datamodel" >}}) to Shabondi source service.
+Send a JSON data of [Row]({{< relref "./custom_connector.md#datamodel" >}}) to Shabondi source service.
 
 * Request  
   POST /

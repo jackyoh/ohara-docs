@@ -1,10 +1,10 @@
 ---
 title: Ohara REST Interface
-linktitle: Overview
+linktitle: API Overview
 layout: docs
 draft: false
 menu:
-  rest-api:
+  master:
     parent: REST APIs
     weight: 10
 
@@ -57,8 +57,8 @@ entities. The error message in response body are format to json content.
 
   Ohara automatically configure all clusters for you. Of course, you have
   the freedom to overwrite any settings. see section
-  [zookeeper]({{< relref "zookeepers.md" >}}), [broker]({{< relref "brokers.md" >}}) and
-  [worker]({{< relref "workers.md" >}}) to see more details.
+  [zookeeper]({{< relref "./zookeepers.md" >}}), [broker]({{< relref "./brokers.md" >}}) and
+  [worker]({{< relref "./workers.md" >}}) to see more details.
 
   In order to provide a great experience in exercising containers, Ohara
   pre-builds a lot of docker images with custom scripts. Of course, Ohara

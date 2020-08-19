@@ -1,12 +1,12 @@
 ---
 title: Validation
-linktitle: Validation
+linktitle: Validation API
 toc: true
 type: docs
 date: "2020-06-18T00:00:00+01:00"
 draft: false
 menu:
-  rest-api:
+  master:
     parent: REST APIs
     weight: 180
 ---
@@ -33,7 +33,7 @@ format and then collect the validation result from kafka.
 
 * Example Request
 
-    The request format is same as [connector request]({{< relref "connectors.md#create-settings" >}})
+    The request format is same as [connector request]({{< relref "./connectors.md#create-settings" >}})
 
 * Example Response
 
@@ -75,7 +75,7 @@ format and then collect the validation result from kafka.
 
     The above example only show a part of report. The element **definition**
     is equal to
-    [connector’s setting definition]({{< relref "workers.md" >}}). 
+    [connector’s setting definition]({{< relref "./workers.md" >}}). 
     The definition is what connector must define. If you don't
     write any definitions for you connector, the validation will do nothing
     for you. The element **value** is what you request to validate.

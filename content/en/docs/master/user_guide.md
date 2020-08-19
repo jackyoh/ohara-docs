@@ -18,8 +18,8 @@ easily and quickly. For normal users, you can manipulate Ohara through
 UI interface even if you have no idea about the magic infra of Ohara.
 For advanced users trying to build custom streaming, they are encouraged
 to design and write application based on Ohara's various and powerful
-APIs (see [Custom Connector]({{< relref "custom_connector.md" >}})
-and [Custom Stream]({{< relref "custom_stream.md" >}})).
+APIs (see [Custom Connector]({{< relref "./custom_connector.md" >}})
+and [Custom Stream]({{< relref "./custom_stream.md" >}})).
 
 Ohara consists of many services, such as
 
@@ -32,7 +32,7 @@ Ohara consists of many services, such as
 4. [Broker]({{< relref "#broker" >}}) --- It provides the access of topics, topics' data 
    durability and balance.
 5. [Worker]({{< relref "#worker" >}}) --- 
-   It hosts and execute [Custom Connector]({{< relref "custom_connector.md" >}})
+   It hosts and execute [Custom Connector]({{< relref "./custom_connector.md" >}})
 6. [Docker]({{< relref "#docker" >}}) --- It packages the configs, dependencies and binary 
    required by services and execute them in a isolated environments
 7. [Kubernetes]({{< relref "#k8s" >}}) --- a management tool of docker instances
@@ -165,7 +165,7 @@ All services host by Ohara Configurator are based on docker technique.
 By default Ohara Configurator use ssh to control the docker containers
 from remote nodes (see [Docker]({{< relref "#docker" >}}) section). 
 In this mode, please make sure the ssh account
-added by [Node APIs]({{< relref "nodes.md" >}}) should
+added by [Node APIs]({{< relref "rest-api/nodes.md" >}}) should
 have sudo permission to run docker command (see
 [here](https://docs.docker.com/install/linux/linux-postinstall/) for
 related steps).
@@ -292,9 +292,9 @@ folder on docker container.
 ### Cache of Configurator {#configurator-cache}
 
 The cost of coordinating countless services is the big **latency**. For
-example, [Topic APIs]({{< relref "topics.md" >}}) allows
+example, [Topic APIs]({{< relref "rest-api/topics.md" >}}) allows
 you to fetch metrics from different
-[broker clusters]({{< relref "brokers.md" >}}). Ohara
+[broker clusters]({{< relref "rest-api/brokers.md" >}}). Ohara
 Configurator has to file a bunch of connections to different clusters to
 retrieve all requisite information, and, of course, the **connections**
 bring the large latency to the GET request. Hence, Ohara Configurator
@@ -309,10 +309,10 @@ of building connections to remote clusters.
 Apart from the data flow, Ohara Configurator is also doable to manage
 clusters for you. For instance, you can
 
-1.  add [node]({{< relref "nodes.md" >}}) to Ohara Configurator
-2.  deploy a [zookeeper cluster]({{< relref "zookeepers.md" >}}) on the node
-3.  deploy a [broker cluster]({{< relref "brokers.md" >}}) on the node as well
-4.  deploy a [worker cluster]({{< relref "workers.md" >}}) on the node
+1.  add [node]({{< relref "rest-api/nodes.md" >}}) to Ohara Configurator
+2.  deploy a [zookeeper cluster]({{< relref "rest-api/zookeepers.md" >}}) on the node
+3.  deploy a [broker cluster]({{< relref "rest-api/brokers.md" >}}) on the node as well
+4.  deploy a [worker cluster]({{< relref "rest-api/workers.md" >}}) on the node
 5.  finally, you can run a connector to stream your data and all
     services you have created are hosted by Ohara Configurator
 
@@ -475,9 +475,9 @@ you have to build a broker cluster before going on your streaming trip.
 Ohara that all applications on Ohara goes through brokers to switch
 data. There are many stories about Ohara leverages the broker to
 complete countless significant works. But the most important usage of
-Brokers for Ohara is the [Topic]({{< relref "topics.md" >}}). 
+Brokers for Ohara is the [Topic]({{< relref "rest-api/topics.md" >}}). 
 Each endpoint in
-[Pipeline]({{< relref "pipelines.md" >}}) must connect
+[Pipeline]({{< relref "rest-api/pipelines.md" >}}) must connect
 to/from a topic, and each topic in Ohara is mapped to a topic in broker.
 It means all data sent/received to/from topic is implemented by a true
 connection to a broker.
@@ -485,13 +485,13 @@ connection to a broker.
 As a result of addressing scalability, a topic is split to many
 **partitions** distributed on different brokers. It implies the number
 of brokers directly impact the performance of Ohara
-[Pipeline]({{< relref "pipelines.md" >}}). If you are
+[Pipeline]({{< relref "rest-api/pipelines.md" >}}). If you are
 streaming a bunch of data and there is only a broker in your broker
 cluster, you will get a slow streaming since all data in the streaming
 are processed by the single broker. Hence, please be careful on
 deploying your broker cluster. But you don't worry about the incorrect
 settings to cluster. Ohara provides many flexible
-[Broker APIs]({{< relref "brokers.md" >}}) to
+[Broker APIs]({{< relref "rest-api/brokers.md" >}}) to
 increase/decrease nodes of a running broker cluster. You are able to
 scale your cluster up/down arbitrarily via Ohara APIs.
 
@@ -585,7 +585,7 @@ rest.advertised.port=8083
 ```
 
 Most options are auto-generated by Ohara Configurator, and
-[Worker APIs]({{< relref "workers.md#rest-workers-create" >}})
+[Worker APIs]({{< relref "rest-api/workers.md#rest-workers-create" >}})
 displays the configurable settings to user. Welcome you to file an issue
 to request more control right of worker cluster.
 

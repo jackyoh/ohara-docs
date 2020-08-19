@@ -30,7 +30,7 @@ in Ohara.
 Ohara stream is a wrap of [kafka
 streams](https://kafka.apache.org/documentation/streams) and provided an
 entry of interface class [Stream]({{< relref "#stream-entry" >}}) to define user custom streaming code. 
-A normal stream application will use [Row]({{< relref "custom_connector.md#datamodel" >}}) 
+A normal stream application will use [Row]({{< relref "./custom_connector.md#datamodel" >}}) 
 as data type to interactive topics in Ohara.
 
 Before writing your stream, you should download the ohara dependencies
@@ -170,7 +170,7 @@ The above code does the following transformations:
 1. pick cell of the header: `name`, `age` from each row
 2. filter out that if `filterName` is null --- 
    here we get the value from **filterName** of definitions. the value you should update by
-   [Stream update api]({{< relref "streams.md#update" >}})
+   [Stream update api]({{< relref "rest-api/streams.md#update" >}})
      
    PUT /v0/streams/XXX
 
@@ -284,7 +284,7 @@ javadoc.
 ## Stream Definitions {#setting-definitions}
 
 Stream stores a list of
-[SettingDef]({{< relref "setting_definition.md" >}}), which
+[SettingDef]({{< relref "./setting_definition.md" >}}), which
 is StreamDefinitions, in the data store. By default, we will keep the
 following definitions in the "core" group and generate the definition
 in stream API :
@@ -343,9 +343,9 @@ metrics in the foreseeable future.
 Ohara leverages JMX to offer the metrics data to stream. It means that
 all metrics you have created are stored as Java beans and accessible
 through JMX service. The stream will expose a port via
-[Stream APIs]({{< relref "streams.md" >}}) for other JMX
+[Stream APIs]({{< relref "rest-api/streams.md" >}}) for other JMX
 client tool used, such as JMC, but we still encourage you to use
-[Stream APIs]({{< relref "streams.md" >}}) as it offers a
+[Stream APIs]({{< relref "rest-api/streams.md" >}}) as it offers a
 more readable format of metrics.
 
 ### Official Metrics {#official-metrics}
@@ -357,7 +357,7 @@ There are two type of official metrics for stream:
 A normal stream will connect to two topics, one is the source topic that
 stream will consume from, and the other is the target topic that stream
 will produce to. We use prefix words (**TOPIC_IN**, **TOPIC_OUT**) in
-the response data ([Stream APIs]({{< relref "streams.md" >}})) 
+the response data ([Stream APIs]({{< relref "rest-api/streams.md" >}})) 
 in order to improve readabilities of those types. You don't
 need to worry about the implementation of these official metrics, but
 you can still read the

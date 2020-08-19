@@ -1,12 +1,12 @@
 ---
 title: Broker
-linktitle: Broker
+linktitle: Broker API
 toc: true
 type: docs
 date: "2020-06-18T00:00:00+01:00"
 draft: false
 menu:
-  rest-api:
+  master:
     parent: REST APIs
     weight: 60
 ---
@@ -15,11 +15,11 @@ menu:
 ohara. The topic, which is a part our data lake, is hosted by broker
 cluster. The number of brokers impacts the performance of transferring
 data and data durability. But it is ok to setup broker cluster in single
-node when testing. As with [zookeeper]({{< relref "zookeepers.md" >}}), broker has
+node when testing. As with [zookeeper]({{< relref "./zookeepers.md" >}}), broker has
 many configs also. Ohara still provide default to most configs and then
 enable user to overwrite them.
 
-Broker is based on [zookeeper]({{< relref "zookeepers.md" >}}), 
+Broker is based on [zookeeper]({{< relref "./zookeepers.md" >}}), 
 hence you have to create zookeeper cluster first. Noted
 that a zookeeper cluster can be used by only a broker cluster. It will
 fail if you try to multi broker cluster on same zookeeper cluster.
@@ -252,7 +252,7 @@ You should use [Get broker cluster]({{< relref "#get" >}}) to fetch up-to-date s
 
 Gracefully stopping a running broker cluster. It is disallowed to stop a
 broker cluster used by a running
-[worker cluster]({{< relref "workers.md" >}}).
+[worker cluster]({{< relref "./workers.md" >}}).
 
 *PUT /v0/brokers/$name/stop?group=$group[&force=true]*
 

@@ -1,24 +1,24 @@
 ---
 title: Connector
-linktitle: Connector
+linktitle: Connector API
 toc: true
 type: docs
 date: "2020-06-18T00:00:00+01:00"
 draft: false
 menu:
-  rest-api:
+  master:
     parent: REST APIs
     weight: 70
 ---
 
 Connector is core of application in Ohara
-[pipeline]({{< relref "pipelines.md" >}}). Connector has
+[pipeline]({{< relref "./pipelines.md" >}}). Connector has
 two type - source and sink. Source connector pulls data from another
 system and then push to topic. By contrast, Sink connector pulls data
 from topic and then push to another system. In order to use connector in
-[pipeline]({{< relref "pipelines.md" >}}), you have to
+[pipeline]({{< relref "./pipelines.md" >}}), you have to
 set up a connector settings in Ohara and then add it to
-[pipeline]({{< relref "pipelines.md" >}}). Of course,
+[pipeline]({{< relref "./pipelines.md" >}}). Of course,
 the connector settings must belong to a existent connector in target
 worker cluster. By default, worker cluster hosts only the official
 connectors. If you have more custom requirement for connector, please

@@ -20,7 +20,7 @@ you have to do is to write your custom connector, which can have only
 the pull()/push() method, and then compile your code to a jar file.
 After uploading your jar to Ohara, you are able to **deploy** your
 connector on the
-[worker cluster]{{< relref "workers.md#rest-workers-create" >}}. By
+[worker cluster]{{< relref "rest-api/workers.md#rest-workers-create" >}}. By
 leveraging Ohara connector framework, apart from the availability,
 scalability, and durability, you can also monitor your connector for
 [logs]({{< relref "rest-api/logs.md" >}}) and
@@ -270,8 +270,8 @@ saves the time and resources.
 {{% /alert %}}
 
 We all hate wrong configs, right? When you design the connector, you can
-**define** the [setting]({{< relref "setting_definition.md" >}}) on your own initiative. 
-The [setting]({{< relref "setting_definition.md" >}}) enable
+**define** the [setting]({{< relref "./setting_definition.md" >}}) on your own initiative. 
+The [setting]({{< relref "./setting_definition.md" >}}) enable
 worker to check the input configs before starting connector. It can't
 eliminate incorrect configs completely, but it save your time of
 fighting against wrong configs (have a great time with your family)
@@ -299,7 +299,7 @@ between them (for example, make them to access a global variable).
 
 Connector has to generate configs for each task. The value of
 **maxTasks** is configured by
-[Connector API]({{< relref "connectors.md" >}}). If
+[Connector API]({{< relref "rest-api/connectors.md" >}}). If
 you prefer to make all tasks do identical job, you can just clone the
 task config passe by [start]({{< relref "#source-start" >}}). Or you
 can prepare different configs for each task. Noted that the number of
@@ -346,7 +346,7 @@ public abstract class RowSourceTask extends SourceTask {
 
 RowSourceTask is the unit of executing **poll**. A connector can invoke
 multiple tasks if you set **tasks.max** be bigger than 1 via
-[Connector API]({{< relref "connectors.md" >}}).
+[Connector API]({{< relref "rest-api/connectors.md" >}}).
 RowSourceTask has the similar lifecycle to Source connector. Worker cluster
 call **start** to initialize a task and call **stop** to terminate a
 task.
@@ -728,7 +728,7 @@ public abstract class RowSourceConnector extends SourceConnector {
 
 The default value is version of build. You can override one of them or
 all of them when writing connector. The version information of a
-connector is showed by [Worker APIs]({{< relref "workers.md" >}}).
+connector is showed by [Worker APIs]({{< relref "rest-api/workers.md" >}}).
 
 {{% alert warning %}}
 Don't return **null**, please!!!
@@ -737,7 +737,7 @@ Don't return **null**, please!!!
 Version in Ohara connector is different to kafka connector. The later
 only supports **version** and it's APIs show only **version**. Hence,
 you can't get revision, author or other
-[settings]({{< relref "setting_definition.md" >}}) through kafka APIs
+[settings]({{< relref "./setting_definition.md" >}}) through kafka APIs
 
 ------------------------------------------------------------------------
 
@@ -747,10 +747,10 @@ We are live in a world filled with number, and so do connectors. While a
 connector is running, Ohara collects many counts from the data flow for
 the connector in background. All of counters (and other records which
 will be introduced in the future) are called **metrics**, and it can be
-fetched by [Connector API]({{< relref "connectors.md" >}}). 
+fetched by [Connector API]({{< relref "rest-api/connectors.md" >}}). 
 Apart from official metrics, connector developers are also
 able to build custom metrics for custom connectors, and all custom
-metrics are also showed by [Connector API]({{< relref "connectors.md" >}}).
+metrics are also showed by [Connector API]({{< relref "rest-api/connectors.md" >}}).
 
 Ohara leverage JMX to offer the metrics APIs to connector. It means all
 metrics you created are stored as Java beans and is accessible through
@@ -800,7 +800,7 @@ your counter.
 {{% alert hint %}}
 The counter created by connector always has the group same to id of
 connector, since Ohara needs to find the counters for specific connector
-in [Connector API]({{< relref "connectors.md" >}})
+in [Connector API]({{< relref "rest-api/connectors.md" >}})
 {{% /alert %}}
 
 ### Official Metrics
@@ -835,7 +835,7 @@ public class ExampleOfCreatingCustomBuilder {
 {{% alert hint %}}
 Ohara doesn't obstruct you from using Counter directly. However, using
 CounterBuilder make sure that your custom metrics are available in
-[Connector API]({{< relref "connectors.md" >}}).
+[Connector API]({{< relref "rest-api/connectors.md" >}}).
 {{% /alert %}}
 
 ------------------------------------------------------------------------

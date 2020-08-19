@@ -1,12 +1,12 @@
 ---
 title: Logs
-linktitle: Logs
+linktitle: Logs API
 toc: true
 type: docs
 date: "2020-06-18T00:00:00+01:00"
 draft: false
 menu:
-  rest-api:
+  master:
     parent: REST APIs
     weight: 110
 ---
@@ -100,5 +100,5 @@ to JSON representation which has following elements.
 {{% alert hint %}}
 the Configurator MUST run on docker container and the node hosting
 Configurator MUST be added to Configurator via
-[Node APIs]({{< relref "nodes.md" >}})
+[Node APIs]({{< relref "./nodes.md" >}})
 {{% /alert %}}
