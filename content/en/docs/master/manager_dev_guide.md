@@ -49,7 +49,6 @@ $ yum install -y xorg-x11-server-Xvfb gtk2-2.24* libXtst* libXScrnSaver* GConf2*
 
 ## Development
 
-
 {{% alert hint %}}
 If this is your first time running this project, you need to complete
 the [Initial machine setup](#initial-machine-setup) section above 👆
@@ -144,7 +143,7 @@ $ yarn test:unit:ci
 ```
 
 Please note that this is a one-off run command, often when you're in
-the development, you would run test and stay in Jest's watch mode
+the development, you would run the test and stay in Jest's watch mode
 which reloads the test once you save your changes:
 
 ```shell script
@@ -159,8 +158,8 @@ This command will generate test coverage reports, which can be found in
 `ohara-manager/client/coverage/ut/`
 
 {{% alert note %}}
-We will automate check the threshold of code coverage by
-**Statements > 40%** if you issued the `test:unit:ci` command.
+We will automatically check the code coverage threshold by
+**Statements > 40%** if you issue the `test:unit:ci` command.
 {{% /alert %}}
 
 #### API test
@@ -181,12 +180,12 @@ under this mode. You might often want to run your tests in this mode
 locally as well.
 
 ```shell script
-$ yarn test:api:ci --configurator ${http://host:port/v0 --port 0}
+$ yarn test:api:ci --configurator ${http://host:port/v0} --port 0
 ```
 
 > 1. Generated test coverage reports could be found in `ohara-manager/client/coverage/api`
-if you executed test with **Electron mode**.
-> 2. The `--port 0` means randomly choose a port for this test run.
+>    if you executed test with **Electron mode**.
+> 2. The `--port 0` means using a random port.
 
 {{% alert note %}}
 We will automate check the threshold of code coverage by
@@ -195,10 +194,10 @@ We will automate check the threshold of code coverage by
 
 #### IT test
 
-To test our UI flows, we use Cypress to test our UI flow with **fake** configurator. These 
-tests focus on the behaviors of UI flow (by different operations from UI), so they should 
-cover most of our UI logic.  You can run the test in different modes:
-                            
+To test our UI flows, we run these test via Cypress with a **fake** configurator. These
+tests focus on the behaviors of UI flow (by different operations from UI), so they should
+cover most of our UI logic. You can run the test in different modes:
+
 **GUI mode**: this will open Cypress test runner, you can then run
 your test manually through the UI.
 
@@ -211,15 +210,15 @@ under this mode. You might often want to run your tests in this mode
 locally as well.
 
 ```shell script
-$ yarn test:it:ci --configurator ${http://host:port/v0 --port 0}
+$ yarn test:it:ci --configurator ${http://host:port/v0} --port 0
 ```
 
 This command will generate test coverage reports, which can be found in
 `ohara-manager/client/coverage/it/`
 
 {{% alert note %}}
-We will automate check the threshold of code coverage by
-**Statements > 75%** if you issued the `test:it:ci` command.
+We will automate check the code coverage threshold by
+**Statements > 75%** if you issue the `test:it:ci` command.
 {{% /alert %}}
 
 #### End-to-End test
@@ -264,13 +263,14 @@ $ yarn test:e2e:ci --configurator ${http://host:port/v0}
 
 ### Code Coverage
 
-As the above test phases are tend to cover different range of our source code, after you executed 
+As the above test phases are tend to cover different range of our source code, after you executed
 the following commands:
+
 - `yarn test:unit:ci`
 - `yarn test:api:ci`
 - `yarn test:it:ci`
 
-we will generate the corresponded coverage reports in relative path as each test section described, and 
+we will generate the corresponded coverage reports in relative path as each test section described, and
 you could combine them to see the overall picture:
 
 ```shell script
@@ -281,9 +281,11 @@ The combined coverage report could be found at `/ohara-manager/client/coverage/i
 
 {{% alert info %}}
 You could also check the combined report by yourself:
+
 ```shell script
 $ yarn test:coverage:check
 ```
+
 {{% /alert %}}
 
 ### Linting
@@ -332,6 +334,30 @@ $ yarn format
 - You can ignore files or folders when running `yarn format` by
   editing the `.prettierignore` in the Ohara-manager root.
 
+### Type checking
+
+We're in the progress of moving from plain JavaScript to TypeScript. Although not all source are moved to TS, you can still type checking files:
+
+```shell script
+$ yarn typecheck
+```
+
+### License
+
+We're enforcing all of our source code files to have a license header, so when creating a new file like `.js` or `.tsx` etc. You will need to include the license header or it would fail on our CI. We provide two npm scripts that your can take advantage of and so you won't need to add the license header manually
+
+Checking if all files include the license header
+
+```shell script
+$ yarn license:test
+```
+
+Add license header for files that miss it
+
+```shell script
+$ license:apply
+```
+
 ### Build
 
 **Note that this step is only required for the Client NOT THE SERVER**
@@ -369,7 +395,6 @@ Ohara-${module} module):
 - node_modules
 - routes
 - utils
-
 
 {{% alert note %}}
 Note that if you add new files or dirs to the **Server** or **Client**
@@ -425,20 +450,25 @@ view them in `/ohara-manager/build.gradle`
 
 ### Clean
 
-Clean up all running processes, removing `test-reports/` in the
-**Server** and `/build` directory in the **Client**:
-
-```shell script
-$ yarn clean
-```
-
 Clean all running processes started with node.js
 
 ```shell script
-$ yarn clean:process
+$ yarn clean:processes
 ```
 
 This is useful when you want to kill all node.js processes locally
+
+Clean test test reports, coverage reports and build artifacts
+
+```shell script
+$ yarn clean:files
+```
+
+Remove both `node_modules` from Server and Client, this is useful when you want to do a clean install
+
+```shell script
+$ yarn clean:deps
+```
 
 ### Prepush
 
@@ -475,27 +505,25 @@ Recommended vscode settings
     "**/coverage": true
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "eslint.workingDirectories": [
-     "./client"
-   ]
+  "eslint.workingDirectories": ["./client"]
 }
 ```
 
 **Recommend extensions**
 
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) --- 
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) ---
   install this so vscode can display linting errors right in the editor
 
-- [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components) --- 
+- [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components) ---
   syntax highlighting support for [styled component](https://github.com/styled-components/styled-components)
 
 - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) ---
   code formatter, it consumes the config in `.prettierrc`
 
-- [DotENV](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv) --- 
+- [DotENV](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv) ---
   `.env` file syntax highlighting support
 
-- [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight) --- 
+- [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight) ---
   Highlight web colors in VSCode
 
 ## Switch different version of Node.js
@@ -556,7 +584,7 @@ For more info, you can read the [docs](https://github.com/tj/n) here.
   `nodemon` while in development, so you need to use the following
   commands to kill them. `kill -9` or `fuser` might not work as you
   expected.
-  
+
   use `yarn clean:processes` command or `pkill node` to kill all the
   node.js processes
 
@@ -595,4 +623,4 @@ This could happen due to several reasons:
 
 - As we mentioned in the previous sections. Please double
   check your configurator URL spelling. This is usually the
-  cause of the above-mentioned error.
+  cause of the above-mentioned errors.
