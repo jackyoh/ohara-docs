@@ -33,6 +33,7 @@ Ohara consists of many services, such as
    durability and balance.
 5. [Worker]({{< relref "#worker" >}}) --- 
    It hosts and execute [Custom Connector]({{< relref "./custom_connector.md" >}})
+6. [Volumes]({{< relref "#volume" >}}) --- Support the persistent data.
 6. [Docker]({{< relref "#docker" >}}) --- It packages the configs, dependencies and binary 
    required by services and execute them in a isolated environments
 7. [Kubernetes]({{< relref "#k8s" >}}) --- a management tool of docker instances
