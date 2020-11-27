@@ -17,15 +17,15 @@ Note: Confirm your user name is ohara and UUID is 1000 in the running cluster en
 
 The properties which can be set by user are shown below.
 
-1. name (**string**) --- volume name. The legal character is lowercase alphanumerics characters and number.
+1. name (**String**) --- volume name. The legal character is lowercase alphanumerics characters and number.
 
-2. group (**string**) --- volume group. The legal character is lowcase alphanumerics characters and number.
+2. group (**String**) --- volume group. The legal character is lowcase alphanumerics characters and number.
 
-3. path (**string**) --- The data folder path in the node.
+3. path (**String**) --- The data folder path in the node.
 
-4. nodeNames (**string**) --- Setting the node to create ohara volume for the zookeeper and broker container use.
+4. nodeNames (**Set[String]**) --- Setting the node to create ohara volume for the zookeeper and broker container use.
 
-5. tags (**object**) --- the user defined parameters.  
+5. tags (**Object**) --- the user defined parameters.  
 
 
 ## create a volume properties {#create-properties}
@@ -108,6 +108,32 @@ Add a new volume for other node. We will use the default value as the query para
     202 Accepted
     ```
 
+## update volume properties setting
+
+*PUT /v0/volumes/$name?group=$group*
+
+If the required volume (group, name) was not exists, we will try to use this request as POST.
+
+* Example Request
+    ```json
+    {
+      "nodeNames": [
+        "node00", "node01"
+      ],
+      "path": "/tmp/workspace2"
+    }
+    ```
+* Example Response
+    ```json
+    {
+      "group": "default",
+      "lastModified": 1606465299352, 
+      "name": $name,
+      "nodeNames": ["node00", "node01"],
+      "path": "/tmp/workspace2",
+      "tags": {}
+    }
+    ```
 ## stop a volume info
 
 Stop a running volume and remove the volume data folder (dangerous). It is disallowed to stop a volume cluster used by a running.
