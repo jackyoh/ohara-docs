@@ -17,15 +17,15 @@ Note: Confirm your user name is ohara and UUID is 1000 in the running cluster en
 
 The properties which can be set by user are shown below.
 
-1. name (**String**) --- volume name. The legal character is lowercase alphanumerics characters and number.
+1. name (**String**) --- The legal character is lowercase alphanumerics characters and number.
 
-2. group (**String**) --- volume group. The legal character is lowcase alphanumerics characters and number.
+2. group (**String**) --- The legal character is lowercase alphanumerics characters and number.
 
 3. path (**String**) --- The data folder path in the node.
 
-4. nodeNames (**Set[String]**) --- Setting the node to create ohara volume for the zookeeper and broker container use.
+4. nodeNames (**Set[String]**) --- The nodes to create ohara volume for zookeeper and broker containers.
 
-5. tags (**Object**) --- the user defined parameters.  
+5. tags (**Object**) --- User-defined parameters.  
 
 
 ## create a volume properties {#create-properties}
@@ -112,7 +112,7 @@ Add a new volume for other node. We will use the default value as the query para
 
 *PUT /v0/volumes/$name?group=$group*
 
-If the required volume (group, name) was not exists, we will try to use this request as POST.
+If the required volume (group, name) doesn't exists, we will try to use this request as POST.
 
 * Example Request
     ```json
@@ -136,7 +136,7 @@ If the required volume (group, name) was not exists, we will try to use this req
     ```
 ## stop a volume info
 
-Stop a running volume and remove the volume data folder (dangerous). It is disallowed to stop a volume cluster used by a running.
+Stop a running volume and remove the volume data folder (dangerous). It is disallowed to stop a volume cluster used by a running zookeeper or broker container.
 
 *PUT /v0/volumes/$name/stop?group=$group[&force=true]*
 
