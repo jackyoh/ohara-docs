@@ -34,9 +34,9 @@ Ohara consists of many services, such as
 5. [Worker]({{< relref "#worker" >}}) --- 
    It hosts and execute [Custom Connector]({{< relref "./custom_connector.md" >}})
 6. [Volumes]({{< relref "#volume" >}}) --- Support the persistent data.
-6. [Docker]({{< relref "#docker" >}}) --- It packages the configs, dependencies and binary 
+7. [Docker]({{< relref "#docker" >}}) --- It packages the configs, dependencies and binary 
    required by services and execute them in a isolated environments
-7. [Kubernetes]({{< relref "#k8s" >}}) --- a management tool of docker instances
+8. [Kubernetes]({{< relref "#k8s" >}}) --- a management tool of docker instances
 
 Ohara has a complicated software stack, but most services are almost
 transparent to you. For example, before creating a topic on Ohara, you
